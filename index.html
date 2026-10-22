@@ -201,11 +201,13 @@ ul{list-style:none;}
   flex:0 0 34px;
   width:34px;height:34px;
   border-radius:11px;
-  display:grid;place-items:center;
-  font-size:16px;line-height:1;
-  color:#123c2f;
-  background:linear-gradient(140deg,var(--gold-light),var(--gold) 55%,#c19a4c);
-  box-shadow:0 6px 16px -8px rgba(213,179,106,.9),inset 0 1px 0 rgba(255,255,255,.55);
+  overflow:hidden;
+  box-shadow:0 6px 16px -8px rgba(0,0,0,.6),inset 0 0 0 1px rgba(255,255,255,.1);
+}
+.brand-mark img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 .brand-text{display:flex;flex-direction:column;gap:2px;min-width:0;}
 .brand-name{
@@ -544,10 +546,13 @@ ul{list-style:none;}
 .app-cross{
   width:16px;height:16px;
   border-radius:5px;
-  display:grid;place-items:center;
-  font-size:8px;line-height:1;
-  color:#123c2f;
-  background:linear-gradient(140deg,var(--gold-light),var(--gold));
+  overflow:hidden;
+  display:block;
+}
+.app-cross img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 .app-avatar{
   width:18px;height:18px;
@@ -859,11 +864,13 @@ ul{list-style:none;}
 .footer-mark{
   width:46px;height:46px;
   border-radius:15px;
-  display:grid;place-items:center;
-  font-size:21px;line-height:1;
-  color:#123c2f;
-  background:linear-gradient(140deg,var(--gold-light),var(--gold) 55%,#c19a4c);
-  box-shadow:0 10px 26px -12px rgba(213,179,106,.8),inset 0 1px 0 rgba(255,255,255,.55);
+  overflow:hidden;
+  box-shadow:0 10px 26px -12px rgba(0,0,0,.8),inset 0 0 0 1px rgba(255,255,255,.1);
+}
+.footer-mark img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 .footer-name{
   font-size:14px;
@@ -1014,7 +1021,9 @@ ul{list-style:none;}
   <header class="topbar" id="topbar">
     <div class="topbar-inner">
       <div class="brand">
-        <div class="brand-mark" aria-hidden="true">✝</div>
+        <div class="brand-mark" aria-hidden="true">
+          <img src="Captura de tela_22-10-2026_44115_fidecrux.netlify.app.jpeg" alt="Logo FIDECRUX">
+        </div>
         <div class="brand-text">
           <span class="brand-name">FIDECRUX</span>
           <span class="brand-sub">SUA JORNADA DE FÉ</span>
@@ -1211,7 +1220,9 @@ ul{list-style:none;}
           <!-- Header do app -->
           <div class="app-header">
             <div class="app-brand">
-              <span class="app-cross" aria-hidden="true">✝</span>
+              <span class="app-cross" aria-hidden="true">
+                <img src="Captura de tela_22-10-2026_44115_fidecrux.netlify.app.jpeg" alt="Logo FIDECRUX">
+              </span>
               <span>FIDECRUX</span>
             </div>
             <div class="app-avatar" aria-hidden="true"></div>
@@ -1477,7 +1488,9 @@ ul{list-style:none;}
        ============================================================ -->
   <footer class="footer">
     <div class="footer-brand">
-      <div class="footer-mark" aria-hidden="true">✝</div>
+      <div class="footer-mark" aria-hidden="true">
+        <img src="Captura de tela_22-10-2026_44115_fidecrux.netlify.app.jpeg" alt="Logo FIDECRUX">
+      </div>
       <div class="footer-name">FIDECRUX</div>
       <div class="footer-tag">Sua jornada de fé</div>
     </div>
@@ -1548,16 +1561,10 @@ ul{list-style:none;}
     'stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" ' +
     'aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg>';
 
-  /**
-   * Exibe uma notificação temporária no rodapé.
-   * @param {string} msg  Texto da mensagem
-   * @param {string} [type] '' | 'success'
-   */
   function showToast(msg, type) {
     if (!toastEl) return;
     toastEl.innerHTML = (type === 'success' ? CHECK_ICON : '') + '<span>' + msg + '</span>';
     toastEl.classList.toggle('success', type === 'success');
-    // força reflow para reiniciar a transição
     void toastEl.offsetWidth;
     toastEl.classList.add('show');
 
@@ -1574,14 +1581,12 @@ ul{list-style:none;}
   function openWhatsApp() {
     const url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(WHATSAPP_MESSAGE);
     showToast('Abrindo WhatsApp…');
-    // pequeno atraso para o toast ser percebido antes da troca de contexto
     setTimeout(function () {
       window.open(url, '_blank', 'noopener,noreferrer');
     }, 180);
   }
   window.openWhatsApp = openWhatsApp;
 
-  // Conecta todos os botões marcados com [data-wa]
   document.querySelectorAll('[data-wa]').forEach(function (btn) {
     btn.addEventListener('click', function (e) {
       e.preventDefault();
@@ -1608,7 +1613,7 @@ ul{list-style:none;}
     }
   }, { passive: true });
 
-  onScroll(); // estado inicial
+  onScroll();
 
   /* ----------------------------------------------------------
      4. Reveal on scroll (IntersectionObserver)
@@ -1627,7 +1632,6 @@ ul{list-style:none;}
 
     revealEls.forEach(function (el) { revealObserver.observe(el); });
   } else {
-    // Fallback: navegadores antigos
     revealEls.forEach(function (el) { el.classList.add('visible'); });
   }
 
@@ -1644,7 +1648,6 @@ ul{list-style:none;}
     btn.addEventListener('click', function () {
       const isOpen = item.classList.contains('open');
 
-      // fecha todos
       faqItems.forEach(function (other) {
         other.classList.remove('open');
         const otherPanel = other.querySelector('.faq-a');
@@ -1653,17 +1656,14 @@ ul{list-style:none;}
         if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
       });
 
-      // se o clicado já estava aberto, apenas fecha (comportamento toggle)
       if (isOpen) return;
 
-      // abre o clicado
       item.classList.add('open');
       panel.style.maxHeight = panel.scrollHeight + 'px';
       btn.setAttribute('aria-expanded', 'true');
     });
   });
 
-  // Recalcula altura do FAQ aberto ao redimensionar / rotacionar
   window.addEventListener('resize', function () {
     const openItem = document.querySelector('.faq-item.open .faq-a');
     if (openItem) openItem.style.maxHeight = openItem.scrollHeight + 'px';
@@ -1685,13 +1685,10 @@ ul{list-style:none;}
       try {
         await navigator.share(shareData);
         showToast('Obrigado por compartilhar!', 'success');
-      } catch (err) {
-        // usuário cancelou — silencioso
-      }
+      } catch (err) {}
       return;
     }
 
-    // Fallback: copiar link
     try {
       if (navigator.clipboard && window.isSecureContext) {
         await navigator.clipboard.writeText(window.location.href);
