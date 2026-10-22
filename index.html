@@ -1,0 +1,1802 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0a1612">
+<meta name="description" content="FIDECRUX — Sua jornada de fé. Palavra, oração, louvor e devoções católicas. Em breve nas lojas.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="FIDECRUX">
+<title>FIDECRUX — Sua jornada de fé</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%23123c2f'/%3E%3Crect x='240' y='120' width='32' height='280' fill='%23f0d99c' rx='4'/%3E%3Crect x='150' y='220' width='212' height='32' fill='%23f0d99c' rx='4'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%23123c2f'/%3E%3Crect x='240' y='120' width='32' height='280' fill='%23f0d99c' rx='4'/%3E%3Crect x='150' y='220' width='212' height='32' fill='%23f0d99c' rx='4'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0a1612;
+  --ink-soft:#152320;
+  --ink-mid:#1a2a24;
+  --green:#123c2f;
+  --green2:#1b4d3d;
+  --green3:#27664e;
+  --gold:#d5b36a;
+  --gold-soft:#e8d195;
+  --gold-deep:#a67d35;
+  --gold-muted:#8a6525;
+  --cream:#f8f5ed;
+  --cream-warm:#f2ede1;
+  --paper:#fffdf8;
+  --text:#21352b;
+  --muted:#6f7c72;
+  --muted-soft:#8a958d;
+  --line:rgba(18,60,47,.08);
+  --line-strong:rgba(18,60,47,.12);
+  --shadow-sm:0 2px 8px rgba(18,60,47,.06);
+  --shadow-md:0 8px 24px rgba(18,60,47,.08);
+  --shadow-lg:0 24px 60px rgba(18,60,47,.14);
+  --shadow-xl:0 40px 100px rgba(18,60,47,.2);
+  --serif:'Cormorant Garamond', Georgia, serif;
+  --sans:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--sans);
+  background:#050a08;
+  color:var(--text);
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  font-feature-settings:'ss01','cv11';
+}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit;padding:0}
+
+/* ============ SITE CONTAINER ============ */
+.site{
+  max-width:480px;
+  margin:0 auto;
+  min-height:100vh;
+  background:var(--ink);
+  position:relative;
+  overflow-x:hidden;
+  box-shadow:0 0 100px rgba(0,0,0,.4);
+}
+@media (max-width:480px){
+  .site{box-shadow:none}
+}
+
+/* ============ TOP BAR ============ */
+.topbar{
+  position:fixed;
+  top:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:100%;
+  max-width:480px;
+  z-index:100;
+  padding:16px 20px;
+  padding-top:calc(16px + env(safe-area-inset-top));
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  transition:background .3s ease, backdrop-filter .3s ease, border-color .3s ease;
+  border-bottom:1px solid transparent;
+}
+.topbar.scrolled{
+  background:rgba(10,22,18,.85);
+  backdrop-filter:blur(20px) saturate(180%);
+  -webkit-backdrop-filter:blur(20px) saturate(180%);
+  border-bottom-color:rgba(213,179,106,.1);
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:11px;
+}
+.brand-logo{
+  width:38px;
+  height:38px;
+  border-radius:12px;
+  background:linear-gradient(145deg,var(--green2),var(--green));
+  color:var(--gold-soft);
+  display:grid;
+  place-items:center;
+  font-size:19px;
+  font-weight:700;
+  font-family:var(--serif);
+  box-shadow:
+    0 1px 0 rgba(240,217,156,.15) inset,
+    0 6px 16px rgba(0,0,0,.3);
+  border:1px solid rgba(240,217,156,.15);
+}
+.brand-text{display:flex;flex-direction:column;line-height:1.05}
+.brand-name{
+  font-family:var(--sans);
+  font-size:.95rem;
+  font-weight:800;
+  color:#fff;
+  letter-spacing:.12em;
+}
+.brand-sub{
+  font-size:.56rem;
+  color:rgba(240,217,156,.6);
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  margin-top:4px;
+  font-weight:600;
+}
+.menu-btn{
+  width:40px;
+  height:40px;
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  color:rgba(255,255,255,.7);
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  transition:all .2s;
+}
+.menu-btn:active{
+  background:rgba(240,217,156,.15);
+  color:var(--gold-soft);
+  transform:scale(.94);
+}
+
+/* ============ HERO ============ */
+.hero{
+  position:relative;
+  padding:calc(120px + env(safe-area-inset-top)) 24px 60px;
+  background:var(--ink);
+  overflow:hidden;
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  top:-200px;
+  left:50%;
+  transform:translateX(-50%);
+  width:600px;
+  height:600px;
+  background:radial-gradient(circle, rgba(213,179,106,.12) 0%, rgba(39,102,78,.08) 30%, transparent 70%);
+  pointer-events:none;
+  animation:heroGlow 8s ease-in-out infinite;
+}
+.hero::after{
+  content:"✝";
+  position:absolute;
+  top:60px;
+  right:-40px;
+  font-size:400px;
+  font-family:var(--serif);
+  color:rgba(240,217,156,.03);
+  line-height:1;
+  pointer-events:none;
+  font-weight:700;
+}
+@keyframes heroGlow{
+  0%,100%{transform:translateX(-50%) scale(1);opacity:.8}
+  50%{transform:translateX(-50%) scale(1.15);opacity:1}
+}
+
+.hero-inner{
+  position:relative;
+  z-index:2;
+}
+
+.hero-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 16px 8px 12px;
+  background:rgba(213,179,106,.08);
+  border:1px solid rgba(213,179,106,.2);
+  border-radius:99px;
+  font-size:.68rem;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--gold-soft);
+  margin-bottom:28px;
+  animation:fadeUp .8s cubic-bezier(.16,1,.3,1) both;
+}
+.hero-badge .dot{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#4ade80;
+  box-shadow:0 0 12px #4ade80, 0 0 24px rgba(74,222,128,.4);
+  animation:dotPulse 2s ease-in-out infinite;
+}
+@keyframes dotPulse{
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:.6;transform:scale(1.2)}
+}
+
+.hero-title{
+  font-family:var(--serif);
+  font-size:clamp(2.6rem, 11vw, 3.4rem);
+  line-height:.98;
+  font-weight:500;
+  color:#fff;
+  letter-spacing:-.02em;
+  margin-bottom:22px;
+  animation:fadeUp .9s cubic-bezier(.16,1,.3,1) .1s both;
+}
+.hero-title em{
+  color:var(--gold-soft);
+  font-style:italic;
+  font-weight:400;
+  position:relative;
+  display:inline-block;
+}
+.hero-title em::after{
+  content:"";
+  position:absolute;
+  bottom:6px;
+  left:0;
+  right:0;
+  height:1px;
+  background:linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity:.5;
+}
+
+.hero-desc{
+  font-size:1.02rem;
+  color:rgba(255,255,255,.55);
+  line-height:1.65;
+  margin-bottom:36px;
+  max-width:380px;
+  font-weight:400;
+  animation:fadeUp .9s cubic-bezier(.16,1,.3,1) .2s both;
+}
+.hero-desc strong{
+  color:rgba(255,255,255,.9);
+  font-weight:600;
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(24px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ============ HERO CTA ============ */
+.hero-cta{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  animation:fadeUp .9s cubic-bezier(.16,1,.3,1) .3s both;
+}
+
+.btn{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:18px 24px;
+  border-radius:16px;
+  font-size:.95rem;
+  font-weight:700;
+  letter-spacing:.01em;
+  transition:transform .15s ease, box-shadow .25s ease;
+  overflow:hidden;
+  -webkit-tap-highlight-color:transparent;
+}
+.btn:active{transform:scale(.97)}
+
+.btn-whatsapp{
+  background:linear-gradient(145deg, #25d366, #1fa953);
+  color:#fff;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.25) inset,
+    0 12px 32px rgba(37,211,102,.35),
+    0 4px 12px rgba(0,0,0,.2);
+  font-size:1rem;
+}
+.btn-whatsapp:active{
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.25) inset,
+    0 6px 20px rgba(37,211,102,.35);
+}
+.btn-whatsapp::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,.15), transparent);
+  transform:translateX(-100%);
+  animation:btnShine 3s ease-in-out infinite;
+}
+@keyframes btnShine{
+  0%,60%{transform:translateX(-100%)}
+  100%{transform:translateX(100%)}
+}
+.btn-whatsapp .icon-wa{
+  width:24px;
+  height:24px;
+  flex-shrink:0;
+  filter:drop-shadow(0 1px 2px rgba(0,0,0,.2));
+}
+.btn-whatsapp .arrow{
+  position:absolute;
+  right:20px;
+  width:18px;
+  height:18px;
+  transition:transform .3s;
+}
+.btn-whatsapp:active .arrow{
+  transform:translateX(4px);
+}
+
+.btn-ghost{
+  background:rgba(255,255,255,.04);
+  color:rgba(255,255,255,.85);
+  border:1px solid rgba(255,255,255,.1);
+  font-size:.88rem;
+  font-weight:600;
+  padding:15px 20px;
+}
+.btn-ghost:active{background:rgba(255,255,255,.08)}
+.btn-ghost svg{width:18px;height:18px;color:var(--gold-soft)}
+
+.hero-note{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top:20px;
+  font-size:.78rem;
+  color:rgba(255,255,255,.35);
+  animation:fadeUp .9s cubic-bezier(.16,1,.3,1) .4s both;
+}
+.hero-note svg{width:14px;height:14px;color:rgba(240,217,156,.5)}
+
+/* ============ SECTION BASE ============ */
+.section{
+  padding:80px 24px;
+  position:relative;
+}
+.section-dark{
+  background:var(--ink);
+  color:#fff;
+}
+.section-light{
+  background:var(--cream);
+  color:var(--text);
+}
+
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-size:.66rem;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  font-weight:700;
+  margin-bottom:18px;
+}
+.eyebrow::before{
+  content:"";
+  width:20px;
+  height:1px;
+  background:currentColor;
+  opacity:.4;
+}
+
+.section-dark .eyebrow{color:var(--gold)}
+.section-light .eyebrow{color:var(--gold-muted)}
+
+.section-title{
+  font-family:var(--serif);
+  font-size:clamp(2rem, 8vw, 2.6rem);
+  line-height:1.05;
+  font-weight:500;
+  letter-spacing:-.02em;
+  margin-bottom:16px;
+}
+.section-dark .section-title{color:#fff}
+.section-light .section-title{color:var(--green)}
+.section-title em{
+  font-style:italic;
+  font-weight:400;
+}
+.section-dark .section-title em{color:var(--gold-soft)}
+.section-light .section-title em{color:var(--gold-muted)}
+
+.section-desc{
+  font-size:.95rem;
+  line-height:1.65;
+  max-width:380px;
+  margin-bottom:40px;
+}
+.section-dark .section-desc{color:rgba(255,255,255,.5)}
+.section-light .section-desc{color:var(--muted)}
+
+/* ============ FEATURES (premium list) ============ */
+.feature-list{
+  display:flex;
+  flex-direction:column;
+  gap:1px;
+  background:var(--line);
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:var(--shadow-md);
+}
+.feature{
+  display:flex;
+  gap:18px;
+  padding:22px 22px;
+  background:var(--paper);
+  transition:background .2s;
+  position:relative;
+}
+.feature:active{background:var(--cream-warm)}
+.feature-icon{
+  width:44px;
+  height:44px;
+  flex-shrink:0;
+  border-radius:12px;
+  background:linear-gradient(145deg, rgba(240,217,156,.4), rgba(213,179,106,.15));
+  border:1px solid rgba(213,179,106,.25);
+  display:grid;
+  place-items:center;
+  color:var(--gold-deep);
+  position:relative;
+}
+.feature-icon::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  background:linear-gradient(145deg, rgba(255,255,255,.5), transparent);
+  pointer-events:none;
+}
+.feature-icon svg{
+  width:22px;
+  height:22px;
+  position:relative;
+  z-index:1;
+}
+.feature-body{flex:1;min-width:0}
+.feature-title{
+  font-size:.95rem;
+  font-weight:700;
+  color:var(--green);
+  margin-bottom:3px;
+  letter-spacing:-.01em;
+}
+.feature-desc{
+  font-size:.82rem;
+  color:var(--muted);
+  line-height:1.5;
+}
+
+/* ============ PREVIEW / PHONE ============ */
+.preview-wrap{
+  display:flex;
+  justify-content:center;
+  padding:20px 0 40px;
+  position:relative;
+}
+.preview-wrap::before{
+  content:"";
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:400px;
+  height:400px;
+  background:radial-gradient(circle, rgba(213,179,106,.15), transparent 60%);
+  pointer-events:none;
+  filter:blur(40px);
+}
+
+.phone{
+  position:relative;
+  width:260px;
+  animation:floatPhone 6s ease-in-out infinite;
+  z-index:2;
+}
+@keyframes floatPhone{
+  0%,100%{transform:translateY(0) rotate(-1deg)}
+  50%{transform:translateY(-10px) rotate(1deg)}
+}
+.phone-frame{
+  background:#000;
+  border-radius:44px;
+  padding:8px;
+  box-shadow:
+    0 0 0 2px rgba(255,255,255,.06) inset,
+    0 0 0 8px rgba(10,22,18,.9),
+    0 50px 100px rgba(0,0,0,.5),
+    0 0 120px rgba(213,179,106,.15);
+  position:relative;
+  overflow:hidden;
+}
+.phone-frame::before{
+  content:"";
+  position:absolute;
+  top:16px;
+  left:50%;
+  transform:translateX(-50%);
+  width:88px;
+  height:26px;
+  background:#000;
+  border-radius:99px;
+  z-index:3;
+}
+.phone-screen{
+  background:var(--cream);
+  border-radius:36px;
+  overflow:hidden;
+  aspect-ratio:9/19.5;
+  display:flex;
+  flex-direction:column;
+  position:relative;
+}
+
+/* Mini UI */
+.m-status{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 22px 0;
+  font-size:8px;
+  font-weight:800;
+  color:var(--ink);
+  height:36px;
+}
+.m-header{
+  padding:8px 14px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  background:rgba(255,253,248,.9);
+  border-bottom:1px solid rgba(18,60,47,.06);
+}
+.m-logo{
+  width:22px;
+  height:22px;
+  border-radius:7px;
+  background:var(--green);
+  color:var(--gold-soft);
+  display:grid;
+  place-items:center;
+  font-size:11px;
+  font-weight:700;
+  font-family:var(--serif);
+}
+.m-title{
+  font-size:8.5px;
+  font-weight:800;
+  color:var(--green);
+  letter-spacing:.1em;
+}
+.m-icons{
+  margin-left:auto;
+  display:flex;
+  gap:6px;
+  color:var(--green);
+  font-size:9px;
+}
+.m-content{
+  flex:1;
+  padding:12px;
+  overflow:hidden;
+}
+.m-greet{
+  font-size:16px;
+  font-weight:800;
+  color:var(--green);
+  line-height:1;
+  margin-bottom:4px;
+  letter-spacing:-.02em;
+}
+.m-date{
+  font-size:8px;
+  color:var(--muted);
+  margin-bottom:12px;
+  font-weight:500;
+}
+.m-verse{
+  background:linear-gradient(145deg, var(--green2), var(--green));
+  color:#fff;
+  border-radius:14px;
+  padding:14px;
+  margin-bottom:12px;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 8px 20px rgba(18,60,47,.25);
+}
+.m-verse::before{
+  content:"✝";
+  position:absolute;
+  top:-20px;
+  right:-10px;
+  font-size:80px;
+  color:rgba(240,217,156,.08);
+  font-family:var(--serif);
+  line-height:1;
+  font-weight:700;
+}
+.m-verse::after{
+  content:"";
+  position:absolute;
+  top:-30px;
+  left:-30px;
+  width:80px;
+  height:80px;
+  background:radial-gradient(circle, rgba(213,179,106,.15), transparent 70%);
+  border-radius:50%;
+}
+.m-verse-label{
+  font-size:6px;
+  letter-spacing:.16em;
+  color:var(--gold-soft);
+  font-weight:800;
+  margin-bottom:6px;
+  position:relative;
+}
+.m-verse-text{
+  font-family:var(--serif);
+  font-size:12px;
+  line-height:1.35;
+  margin-bottom:5px;
+  position:relative;
+  font-style:italic;
+  font-weight:500;
+}
+.m-verse-ref{
+  font-size:7px;
+  color:rgba(255,255,255,.6);
+  position:relative;
+}
+.m-section-label{
+  font-size:6px;
+  letter-spacing:.16em;
+  color:var(--muted);
+  font-weight:800;
+  text-transform:uppercase;
+  margin:10px 0 6px;
+}
+.m-quick{
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:5px;
+}
+.m-quick-item{
+  background:var(--paper);
+  border:1px solid rgba(18,60,47,.06);
+  border-radius:9px;
+  padding:9px 2px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:3px;
+  font-size:6px;
+  font-weight:700;
+  color:var(--text);
+}
+.m-quick-icon{
+  width:18px;
+  height:18px;
+  border-radius:5px;
+  background:linear-gradient(145deg, var(--gold-soft), var(--gold));
+  color:#3d321c;
+  display:grid;
+  place-items:center;
+  font-size:9px;
+}
+.m-nav{
+  height:44px;
+  background:var(--paper);
+  border-top:1px solid rgba(18,60,47,.06);
+  display:flex;
+  padding-bottom:8px;
+}
+.m-nav-item{
+  flex:1;
+  display:grid;
+  place-items:center;
+  font-size:12px;
+  color:var(--muted-soft);
+}
+.m-nav-item.active{color:var(--green)}
+
+/* ============ CTA WHATSAPP SECTION ============ */
+.cta-whatsapp{
+  padding:60px 24px;
+  background:linear-gradient(180deg, var(--cream) 0%, var(--cream-warm) 100%);
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.cta-whatsapp::before{
+  content:"";
+  position:absolute;
+  top:-100px;
+  left:-100px;
+  width:300px;
+  height:300px;
+  background:radial-gradient(circle, rgba(37,211,102,.08), transparent 70%);
+  border-radius:50%;
+}
+.cta-whatsapp::after{
+  content:"";
+  position:absolute;
+  bottom:-100px;
+  right:-100px;
+  width:250px;
+  height:250px;
+  background:radial-gradient(circle, rgba(213,179,106,.1), transparent 70%);
+  border-radius:50%;
+}
+.cta-whatsapp > *{position:relative;z-index:1}
+
+.cta-icon{
+  width:64px;
+  height:64px;
+  margin:0 auto 20px;
+  border-radius:20px;
+  background:linear-gradient(145deg, #25d366, #1fa953);
+  display:grid;
+  place-items:center;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.3) inset,
+    0 20px 40px rgba(37,211,102,.3);
+  animation:iconFloat 3s ease-in-out infinite;
+}
+@keyframes iconFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-6px)}
+}
+.cta-icon svg{
+  width:32px;
+  height:32px;
+  color:#fff;
+  filter:drop-shadow(0 2px 4px rgba(0,0,0,.2));
+}
+
+.cta-title{
+  font-family:var(--serif);
+  font-size:1.85rem;
+  line-height:1.1;
+  font-weight:500;
+  color:var(--green);
+  letter-spacing:-.02em;
+  margin-bottom:12px;
+}
+.cta-title em{
+  color:var(--gold-muted);
+  font-style:italic;
+  font-weight:400;
+}
+.cta-desc{
+  font-size:.92rem;
+  color:var(--muted);
+  line-height:1.6;
+  max-width:340px;
+  margin:0 auto 28px;
+}
+
+/* ============ STORES ============ */
+.stores-section{
+  padding:60px 24px;
+  background:var(--cream-warm);
+}
+.stores-label{
+  font-size:.64rem;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--gold-muted);
+  font-weight:700;
+  text-align:center;
+  margin-bottom:20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+}
+.stores-label::before,
+.stores-label::after{
+  content:"";
+  width:24px;
+  height:1px;
+  background:rgba(138,101,37,.3);
+}
+.stores-row{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  max-width:340px;
+  margin:0 auto;
+}
+.store-badge{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:15px 20px;
+  background:#000;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:14px;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 15px 40px rgba(0,0,0,.15);
+  transition:transform .15s;
+  opacity:.85;
+}
+.store-badge:active{transform:scale(.98)}
+.store-badge::after{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:100%;
+  height:100%;
+  background:linear-gradient(90deg, transparent, rgba(240,217,156,.35), transparent);
+  animation:badgeShine 3.5s ease-in-out infinite;
+}
+@keyframes badgeShine{
+  0%{left:-100%}
+  55%,100%{left:100%}
+}
+.store-badge .s-icon{
+  width:32px;
+  height:32px;
+  flex-shrink:0;
+  display:grid;
+  place-items:center;
+  position:relative;
+  z-index:1;
+}
+.store-badge .s-icon svg{width:100%;height:100%}
+.store-badge .s-text{
+  text-align:left;
+  flex:1;
+  position:relative;
+  z-index:1;
+}
+.store-badge .s-small{
+  font-size:.56rem;
+  color:rgba(255,255,255,.5);
+  letter-spacing:.06em;
+}
+.store-badge .s-name{
+  font-size:.95rem;
+  font-weight:700;
+  color:#fff;
+  letter-spacing:.01em;
+  line-height:1.15;
+  margin-top:2px;
+}
+.store-badge .s-tag{
+  position:absolute;
+  top:-6px;
+  right:-6px;
+  background:linear-gradient(145deg, var(--gold-soft), var(--gold));
+  color:#3d321c;
+  font-size:.48rem;
+  font-weight:900;
+  letter-spacing:.12em;
+  padding:4px 10px;
+  border-radius:99px;
+  box-shadow:0 4px 14px rgba(213,179,106,.45);
+  z-index:5;
+}
+
+/* ============ FAQ ============ */
+.faq-list{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.faq-item{
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:16px;
+  overflow:hidden;
+  transition:all .25s;
+}
+.faq-item.open{
+  border-color:rgba(213,179,106,.35);
+  box-shadow:0 12px 30px rgba(18,60,47,.08);
+}
+.faq-q{
+  width:100%;
+  padding:20px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  text-align:left;
+  font-size:.92rem;
+  font-weight:600;
+  color:var(--green);
+  letter-spacing:-.01em;
+  transition:background .15s;
+}
+.faq-q:active{background:rgba(18,60,47,.02)}
+.faq-icon{
+  width:24px;
+  height:24px;
+  flex-shrink:0;
+  border-radius:8px;
+  background:rgba(18,60,47,.05);
+  display:grid;
+  place-items:center;
+  transition:all .3s;
+  color:var(--gold-deep);
+}
+.faq-item.open .faq-icon{
+  background:var(--green);
+  color:var(--gold-soft);
+  transform:rotate(180deg);
+}
+.faq-icon svg{width:14px;height:14px}
+.faq-a{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .4s cubic-bezier(.16,1,.3,1);
+  padding:0 22px;
+  color:var(--muted);
+  font-size:.85rem;
+  line-height:1.7;
+}
+.faq-item.open .faq-a{
+  max-height:300px;
+  padding-bottom:22px;
+}
+
+/* ============ FOOTER ============ */
+.footer{
+  background:var(--ink);
+  color:rgba(255,255,255,.5);
+  padding:60px 24px calc(40px + env(safe-area-inset-bottom));
+  position:relative;
+  overflow:hidden;
+}
+.footer::before{
+  content:"";
+  position:absolute;
+  top:-100px;
+  left:50%;
+  transform:translateX(-50%);
+  width:400px;
+  height:400px;
+  background:radial-gradient(circle, rgba(213,179,106,.06), transparent 70%);
+  border-radius:50%;
+  pointer-events:none;
+}
+.footer-inner{
+  position:relative;
+  z-index:1;
+  text-align:center;
+}
+.footer-brand{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:12px;
+  margin-bottom:32px;
+}
+.footer-logo{
+  width:52px;
+  height:52px;
+  border-radius:15px;
+  background:linear-gradient(145deg, var(--green2), var(--green));
+  color:var(--gold-soft);
+  display:grid;
+  place-items:center;
+  font-size:26px;
+  font-family:var(--serif);
+  font-weight:700;
+  box-shadow:
+    0 1px 0 rgba(240,217,156,.15) inset,
+    0 12px 24px rgba(0,0,0,.3);
+  border:1px solid rgba(240,217,156,.15);
+}
+.footer-name{
+  font-size:1.05rem;
+  font-weight:800;
+  color:#fff;
+  letter-spacing:.14em;
+}
+.footer-tag{
+  font-size:.65rem;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--gold-soft);
+  opacity:.7;
+  margin-top:-4px;
+  font-weight:600;
+}
+.footer-social{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-bottom:32px;
+}
+.social-btn{
+  width:46px;
+  height:46px;
+  border-radius:14px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  display:grid;
+  place-items:center;
+  color:rgba(255,255,255,.6);
+  transition:all .2s;
+}
+.social-btn:active{
+  background:rgba(240,217,156,.15);
+  color:var(--gold-soft);
+  border-color:rgba(240,217,156,.3);
+  transform:scale(.94);
+}
+.social-btn svg{width:20px;height:20px}
+.footer-links{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  flex-wrap:wrap;
+  font-size:.78rem;
+  margin-bottom:28px;
+}
+.footer-links a{
+  color:rgba(255,255,255,.4);
+  transition:color .2s;
+}
+.footer-links a:active{color:var(--gold-soft)}
+.footer-copy{
+  font-size:.72rem;
+  color:rgba(255,255,255,.3);
+  line-height:1.7;
+  letter-spacing:.01em;
+}
+.footer-copy .heart{
+  color:var(--gold);
+  display:inline-block;
+  animation:heartbeat 2s ease-in-out infinite;
+  margin:0 2px;
+}
+@keyframes heartbeat{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.25)}
+}
+
+/* ============ TOAST ============ */
+.toast{
+  position:fixed;
+  bottom:calc(24px + env(safe-area-inset-bottom));
+  left:50%;
+  transform:translate(-50%, 100px);
+  background:var(--green);
+  color:#fff;
+  padding:14px 22px;
+  border-radius:14px;
+  font-size:.85rem;
+  font-weight:600;
+  box-shadow:0 15px 40px rgba(0,0,0,.3);
+  z-index:1000;
+  opacity:0;
+  transition:transform .35s cubic-bezier(.16,1,.3,1), opacity .35s;
+  max-width:calc(100% - 40px);
+  text-align:center;
+  pointer-events:none;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.toast.show{
+  opacity:1;
+  transform:translate(-50%, 0);
+}
+.toast svg{
+  width:18px;
+  height:18px;
+  flex-shrink:0;
+}
+.toast.success{
+  background:linear-gradient(145deg, #25d366, #1fa953);
+}
+
+/* ============ REVEAL ============ */
+.reveal{
+  opacity:0;
+  transform:translateY(30px);
+  transition:opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1);
+}
+.reveal.in-view{
+  opacity:1;
+  transform:none;
+}
+
+/* ============ FLOATING ELEMENTS ============ */
+.floating-cross{
+  position:absolute;
+  font-family:var(--serif);
+  color:rgba(240,217,156,.15);
+  pointer-events:none;
+  animation:floatCross 8s ease-in-out infinite;
+}
+@keyframes floatCross{
+  0%,100%{transform:translate(0,0) rotate(0)}
+  50%{transform:translate(-10px,15px) rotate(3deg)}
+}
+
+/* ============ RESPONSIVE ============ */
+@media (min-width:480px){
+  .site{min-height:100vh}
+  .hero{padding-top:140px;padding-bottom:80px}
+  .hero-title{font-size:3.4rem}
+}
+
+/* ============ SMOOTH SCROLL OFFSET ============ */
+#waitlist{scroll-margin-top:80px}
+
+/* ===== FIDECRUX — redesign editorial, responsivo ===== */
+:root{
+ --ink:#101c17;--ink-soft:#172821;--green:#234b3b;--green2:#2e5c46;
+ --gold:#c8a96a;--gold-soft:#ead8a8;--cream:#f6f3eb;--paper:#fffdf8;
+ --text:#24372d;--muted:#758077;--line:rgba(28,57,43,.12);
+ --serif:'Cormorant Garamond',Georgia,serif;
+}
+html{scroll-padding-top:90px}
+body{background:#f6f3eb}
+.site{max-width:none;width:100%;overflow:hidden;background:var(--ink);box-shadow:none}
+.topbar{max-width:none;width:100%;padding:18px max(5vw,24px);background:rgba(13,27,21,.88);backdrop-filter:blur(18px);border-bottom:1px solid rgba(234,216,168,.12)}
+.brand-logo,.footer-logo,.m-logo{border-radius:50%;background:var(--green);border:1px solid rgba(234,216,168,.55);box-shadow:0 0 0 4px rgba(234,216,168,.06),0 8px 22px #0002}
+.brand-logo{width:42px;height:42px;font-size:21px}
+.brand-name{letter-spacing:.18em;font-size:1rem}
+.brand-sub{letter-spacing:.13em}
+.menu-btn{border-radius:50%;width:44px;height:44px}
+.hero{min-height:690px;padding:170px max(8vw,28px) 100px;background:radial-gradient(ellipse at 80% 30%,rgba(71,112,78,.25),transparent 38%),linear-gradient(125deg,#0d1914,#152b20 62%,#0c1712)}
+.hero::before{top:-150px;left:75%;width:720px;height:720px;background:radial-gradient(circle,rgba(201,169,106,.15),rgba(39,102,78,.08) 35%,transparent 70%)}
+.hero::after{content:"✝";top:110px;right:8%;font-size:clamp(250px,32vw,500px);color:rgba(234,216,168,.045);text-shadow:0 0 1px rgba(234,216,168,.12)}
+.hero-inner{max-width:1180px;margin:auto}
+.hero-badge{border-radius:4px;padding:9px 13px;letter-spacing:.16em;background:rgba(234,216,168,.07);border-color:rgba(234,216,168,.25)}
+.hero-title{font-size:clamp(4rem,8vw,7.4rem);line-height:.88;letter-spacing:-.045em;margin-bottom:30px;max-width:850px}
+.hero-title em{color:#e7d3a0}
+.hero-title em::after{bottom:0;height:2px;opacity:.65}
+.hero-desc{font-size:1.12rem;max-width:520px;line-height:1.8;color:rgba(255,255,255,.65);margin-bottom:34px}
+.hero-cta{flex-direction:row;align-items:center;flex-wrap:wrap;gap:14px}
+.btn{border-radius:999px;padding:17px 25px}
+.btn-whatsapp{box-shadow:0 10px 30px rgba(37,211,102,.18);padding-right:52px}
+.btn-ghost{border-radius:999px;padding:16px 23px;background:rgba(255,255,255,.035)}
+.hero-note{font-size:.8rem;margin-top:24px}
+.section{padding:100px max(8vw,28px)}
+.section > *{max-width:1180px;margin-left:auto;margin-right:auto}
+.section-title{font-size:clamp(2.8rem,5vw,4.4rem);letter-spacing:-.035em}
+.section-desc{font-size:1rem;max-width:550px;line-height:1.8}
+.eyebrow{letter-spacing:.2em}
+.section-light{background:var(--cream)}
+.feature-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;border-radius:22px;box-shadow:0 18px 60px rgba(18,60,47,.07);background:rgba(35,75,59,.12)}
+.feature{padding:28px;background:rgba(255,253,248,.95);min-height:130px;align-items:flex-start;transition:transform .25s,background .25s}
+.feature:hover{background:#fff;transform:translateY(-2px)}
+.feature-icon{width:50px;height:50px;border-radius:50%;background:#f2e8d0;border-color:rgba(200,169,106,.25);color:#896b32}
+.feature-title{font-size:1rem}
+.feature-desc{font-size:.87rem;line-height:1.65}
+#preview{background:radial-gradient(ellipse at 50% 50%,#1c3829,#101c17 70%)}
+#preview .section-desc{max-width:460px}
+.preview-wrap{padding:40px 0 30px}
+.phone{width:280px}
+.phone-frame{box-shadow:0 0 0 1px rgba(234,216,168,.25),0 0 0 8px rgba(234,216,168,.035),0 45px 110px #0008,0 0 100px rgba(200,169,106,.12)}
+.cta-whatsapp{padding:90px 28px;background:linear-gradient(135deg,#f8f5ed,#eee7d7)}
+.cta-title{font-size:clamp(2.5rem,5vw,3.8rem)}
+.cta-icon{border-radius:50%;width:70px;height:70px}
+.stores-section{padding:60px 24px;background:#eee7d7}
+.stores-row{flex-direction:row;max-width:650px;justify-content:center}
+.store-badge{flex:1;max-width:300px;border-radius:16px;opacity:1}
+.faq-list{max-width:850px;margin-left:0}
+.faq-item{border-radius:14px}
+.faq-q{padding:23px 25px}
+.faq-a{font-size:.9rem}
+.footer{padding:80px 28px 50px}
+.footer-inner{max-width:800px;margin:auto}
+.footer-logo{width:58px;height:58px;border-radius:50%}
+.social-btn{border-radius:50%}
+a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
+@media(min-width:900px){
+ .hero{min-height:760px;padding-top:210px}
+ .hero-inner{padding-left:2vw}
+ .hero-cta{max-width:700px}
+ .section-light#features{padding-top:120px;padding-bottom:120px}
+ .section-light#features>.reveal{margin-bottom:45px}
+ .section-light#features .section-desc{margin-bottom:0}
+ .section-light#features .feature-list{margin-top:42px}
+ #preview .section-title br{display:none}
+ .preview-wrap{padding-top:50px}
+}
+@media(max-width:700px){
+ .topbar{padding:14px 20px;padding-top:calc(14px + env(safe-area-inset-top))}
+ .hero{min-height:auto;padding:140px 24px 76px}
+ .hero::after{top:105px;right:-75px;font-size:300px}
+ .hero-title{font-size:clamp(3.4rem,15vw,5.2rem);line-height:.91}
+ .hero-desc{font-size:.98rem}
+ .hero-cta{flex-direction:column;align-items:stretch}
+ .btn{width:100%}
+ .section{padding:72px 22px}
+ .section-title{font-size:clamp(2.5rem,11vw,3.4rem)}
+ .feature-list{grid-template-columns:1fr}
+ .feature{padding:21px 19px;min-height:unset}
+ .feature-icon{width:44px;height:44px}
+ .stores-row{flex-direction:column;max-width:360px}
+ .store-badge{max-width:none}
+ .cta-whatsapp{padding:72px 22px}
+ .footer{padding:65px 22px calc(35px + env(safe-area-inset-bottom))}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
+ .reveal{opacity:1;transform:none}
+}
+
+</style>
+</head>
+<body>
+
+<div class="site">
+
+  <!-- TOP BAR -->
+  <header class="topbar" id="topbar">
+    <div class="brand">
+      <div class="brand-logo">✝</div>
+      <div class="brand-text">
+        <div class="brand-name">FIDECRUX</div>
+        <div class="brand-sub">Sua jornada de fé</div>
+      </div>
+    </div>
+    <button class="menu-btn" id="shareBtn" aria-label="Compartilhar">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+      </svg>
+    </button>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        Em breve nas lojas
+      </div>
+
+      <h1 class="hero-title">
+        Sua fé,<br>
+        <em>mais perto</em><br>
+        de Deus.
+      </h1>
+
+      <p class="hero-desc">
+        Palavra, oração, louvor e devoções em um só lugar. <strong>O FIDECRUX está chegando</strong> para transformar sua rotina com Deus.
+      </p>
+
+      <div class="hero-cta">
+        <button class="btn btn-whatsapp" id="heroWhatsBtn">
+          <svg class="icon-wa" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+          </svg>
+          Quero ser avisado no WhatsApp
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </button>
+
+        <button class="btn btn-ghost" id="previewBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/>
+          </svg>
+          Ver prévia do app
+        </button>
+      </div>
+
+      <div class="hero-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+        Sem spam. Sem cobrança. Só fé.
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section section-light" id="features">
+    <div class="reveal">
+      <div class="eyebrow">O que vem por aí</div>
+      <h2 class="section-title">
+        Tudo que sua fé<br>
+        <em>precisa, junto.</em>
+      </h2>
+      <p class="section-desc">
+        Um app feito com carinho, para acompanhar você em cada momento — do amanhecer à noite.
+      </p>
+    </div>
+
+    <div class="feature-list reveal">
+      <div class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+          </svg>
+        </div>
+        <div class="feature-body">
+          <div class="feature-title">Liturgia diária</div>
+          <div class="feature-desc">Leituras, salmo e Evangelho com cores litúrgicas automáticas</div>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        </div>
+        <div class="feature-body">
+          <div class="feature-title">Orações e novenas</div>
+          <div class="feature-desc">Terço guiado, novenas com progresso e exame de consciência</div>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <path d="M9 18V5l12-2v13"/>
+            <circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+          </svg>
+        </div>
+        <div class="feature-body">
+          <div class="feature-title">Louvor sem anúncios</div>
+          <div class="feature-desc">Ouça offline, em segundo plano, sem nenhuma interrupção</div>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <circle cx="12" cy="3" r="1.2" fill="currentColor"/>
+            <circle cx="12" cy="21" r="1.2" fill="currentColor"/>
+            <circle cx="3" cy="12" r="1.2" fill="currentColor"/>
+            <circle cx="21" cy="12" r="1.2" fill="currentColor"/>
+            <circle cx="6" cy="6" r="1.2" fill="currentColor"/>
+            <circle cx="18" cy="6" r="1.2" fill="currentColor"/>
+            <circle cx="6" cy="18" r="1.2" fill="currentColor"/>
+            <circle cx="18" cy="18" r="1.2" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="feature-body">
+          <div class="feature-title">Devoções completas</div>
+          <div class="feature-desc">Via-Sacra com 14 estações e os santos de cada dia</div>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+        </div>
+        <div class="feature-body">
+          <div class="feature-title">100% offline</div>
+          <div class="feature-desc">Reze em qualquer lugar — no ônibus, no avião, na missa</div>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <path d="M21 15l-5-5L5 21"/>
+          </svg>
+        </div>
+        <div class="feature-body">
+          <div class="feature-title">Compartilhe fé</div>
+          <div class="feature-desc">Gere imagens de versículos para enviar a quem você ama</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PREVIEW -->
+  <section class="section section-dark" id="preview">
+    <div class="reveal" style="text-align:center">
+      <div class="eyebrow" style="justify-content:center">Prévia exclusiva</div>
+      <h2 class="section-title">
+        Um pouco do que<br>
+        <em>está por vir.</em>
+      </h2>
+      <p class="section-desc" style="margin-left:auto;margin-right:auto">
+        Design acolhedor, pensado para a sua oração.
+      </p>
+    </div>
+
+    <div class="preview-wrap reveal">
+      <div class="phone">
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <div class="m-status"><span>9:41</span><span>●●●</span></div>
+            <div class="m-header">
+              <div class="m-logo">✝</div>
+              <div class="m-title">FIDECRUX</div>
+              <div class="m-icons">☾ ⌕</div>
+            </div>
+            <div class="m-content">
+              <div class="m-greet">Bom dia</div>
+              <div class="m-date">Hoje é um dia de graça</div>
+              <div class="m-verse">
+                <div class="m-verse-label">VERSÍCULO DO DIA</div>
+                <div class="m-verse-text">"O Senhor é meu pastor; nada me faltará."</div>
+                <div class="m-verse-ref">Salmo 23, 1</div>
+              </div>
+              <div class="m-section-label">Ações rápidas</div>
+              <div class="m-quick">
+                <div class="m-quick-item">
+                  <div class="m-quick-icon">▤</div>
+                  Liturgia
+                </div>
+                <div class="m-quick-item">
+                  <div class="m-quick-icon">♫</div>
+                  Músicas
+                </div>
+                <div class="m-quick-item">
+                  <div class="m-quick-icon">♡</div>
+                  Orações
+                </div>
+                <div class="m-quick-item">
+                  <div class="m-quick-icon">✧</div>
+                  Terço
+                </div>
+              </div>
+            </div>
+            <div class="m-nav">
+              <div class="m-nav-item active">✝</div>
+              <div class="m-nav-item">▤</div>
+              <div class="m-nav-item">♫</div>
+              <div class="m-nav-item">♡</div>
+              <div class="m-nav-item">☰</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORES -->
+  <section class="stores-section">
+    <div class="stores-label reveal">Chegando em</div>
+    <div class="stores-row reveal">
+      <div class="store-badge">
+        <div class="s-tag">EM BREVE</div>
+        <div class="s-icon">
+          <svg viewBox="0 0 24 24" fill="#fff">
+            <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+          </svg>
+        </div>
+        <div class="s-text">
+          <div class="s-small">Baixe na</div>
+          <div class="s-name">App Store</div>
+        </div>
+      </div>
+      <div class="store-badge">
+        <div class="s-tag">EM BREVE</div>
+        <div class="s-icon">
+          <svg viewBox="0 0 24 24">
+            <defs>
+              <linearGradient id="gp1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00d4ff"/><stop offset="100%" stop-color="#00b4e8"/></linearGradient>
+              <linearGradient id="gp2" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#ff3a44"/><stop offset="100%" stop-color="#ff7a5c"/></linearGradient>
+              <linearGradient id="gp3" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#ffd400"/><stop offset="100%" stop-color="#f9a825"/></linearGradient>
+              <linearGradient id="gp4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#48ff91"/><stop offset="100%" stop-color="#00c853"/></linearGradient>
+            </defs>
+            <path fill="url(#gp1)" d="M3 2L13.5 12.5L3 2z"/>
+            <path fill="url(#gp2)" d="M3 2L13.5 12.5L3 22L3 2z"/>
+            <path fill="url(#gp4)" d="M13.5 12.5L21 12.5L3 2v20L13.5 12.5z"/>
+            <path fill="url(#gp3)" d="M13.5 12.5L21 2L3 2L13.5 12.5z"/>
+          </svg>
+        </div>
+        <div class="s-text">
+          <div class="s-small">Disponível no</div>
+          <div class="s-name">Google Play</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA WHATSAPP -->
+  <section class="cta-whatsapp" id="waitlist">
+    <div class="cta-icon">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+      </svg>
+    </div>
+    <h2 class="cta-title reveal">
+      Seja o primeiro<br>
+      <em>a saber do lançamento.</em>
+    </h2>
+    <p class="cta-desc reveal">
+      Clique abaixo e mande uma mensagem direta no WhatsApp. Avisaremos você em primeira mão quando o FIDECRUX chegar.
+    </p>
+    <button class="btn btn-whatsapp reveal" id="ctaWhatsBtn" style="width:100%;max-width:340px;margin:0 auto;display:flex">
+      <svg class="icon-wa" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+      </svg>
+      Avisar no WhatsApp
+      <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="5" y1="12" x2="19" y2="12"/>
+        <polyline points="12 5 19 12 12 19"/>
+      </svg>
+    </button>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section-light">
+    <div class="reveal">
+      <div class="eyebrow">Dúvidas</div>
+      <h2 class="section-title">
+        Perguntas<br>
+        <em>frequentes.</em>
+      </h2>
+    </div>
+
+    <div class="faq-list" style="margin-top:32px">
+      <div class="faq-item reveal">
+        <button class="faq-q">
+          Quando o FIDECRUX será lançado?
+          <span class="faq-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </span>
+        </button>
+        <div class="faq-a">
+          Estamos em fase final de desenvolvimento. O lançamento está previsto em breve — em 2026. Entre na lista do WhatsApp para ser avisado com antecedência.
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-q">
+          O app será gratuito?
+          <span class="faq-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </span>
+        </button>
+        <div class="faq-a">
+          Sim! O FIDECRUX será 100% gratuito, sem anúncios, sem assinatura e sem cobranças escondidas. Todos os recursos principais estarão disponíveis para todos.
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-q">
+          Vai funcionar sem internet?
+          <span class="faq-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </span>
+        </button>
+        <div class="faq-a">
+          Sim! O FIDECRUX foi feito para funcionar offline. Você poderá rezar, ouvir louvores e acessar suas orações em qualquer lugar — no ônibus, no avião, na missa.
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-q">
+          É oficial da Igreja Católica?
+          <span class="faq-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </span>
+        </button>
+        <div class="faq-a">
+          O FIDECRUX é um projeto independente, feito com respeito e carinho pela tradição católica. Seguimos os ensinamentos da Igreja. Para celebrações oficiais, consulte sempre a fonte da sua paróquia.
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-q">
+          Meus dados estão seguros?
+          <span class="faq-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </span>
+        </button>
+        <div class="faq-a">
+          Sim. Seus favoritos, diário e reflexões ficam salvos apenas no seu dispositivo. Seu WhatsApp será usado apenas para te avisar sobre o lançamento — nunca será compartilhado.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">✝</div>
+        <div class="footer-name">FIDECRUX</div>
+        <div class="footer-tag">Sua jornada de fé</div>
+      </div>
+
+      <div class="footer-social">
+        <a href="#" class="social-btn" aria-label="Instagram" id="instagramBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5"/>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+          </svg>
+        </a>
+        <a href="#" class="social-btn" aria-label="TikTok" id="tiktokBtn">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+          </svg>
+        </a>
+        <a href="#" class="social-btn" aria-label="WhatsApp" id="whatsappFooterBtn">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="footer-links">
+        <a href="#waitlist">Avisar no WhatsApp</a>
+        <a href="#" id="privacyLink">Privacidade</a>
+        <a href="#" id="termsLink">Termos</a>
+      </div>
+
+      <div class="footer-copy">
+        © 2026 FIDECRUX · Feito com <span class="heart">♥</span> e fé<br>
+        <span style="opacity:.6">App em desenvolvimento · Em breve nas lojas</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(() => {
+'use strict';
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+
+/* ============ WHATSAPP ============ */
+const WHATSAPP_NUMBER = '553198771435';
+const WHATSAPP_MESSAGE = 'Olá! Vim pelo site do FIDECRUX e quero ser avisado(a) quando o app lançar. 🙏';
+
+function openWhatsApp() {
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
+  window.open(url, '_blank', 'noopener,noreferrer');
+  showToast('Abrindo WhatsApp…', 'success');
+}
+
+/* ============ TOAST ============ */
+let toastTimer;
+function showToast(msg, type = '') {
+  const el = $('#toast');
+  el.innerHTML = (type === 'success' 
+    ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>' 
+    : '') + `<span>${msg}</span>`;
+  el.className = 'toast show ' + type;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 3200);
+}
+
+/* ============ TOPBAR SCROLL ============ */
+const topbar = $('#topbar');
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  if (y > 40) topbar.classList.add('scrolled');
+  else topbar.classList.remove('scrolled');
+  lastScroll = y;
+}, { passive: true });
+
+/* ============ REVEAL ON SCROLL ============ */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in-view');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.08,
+  rootMargin: '0px 0px -60px 0px'
+});
+$$('.reveal').forEach(el => revealObserver.observe(el));
+
+/* ============ FAQ ============ */
+$$('.faq-item').forEach(item => {
+  const q = item.querySelector('.faq-q');
+  q.addEventListener('click', () => {
+    const wasOpen = item.classList.contains('open');
+    $$('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  });
+});
+
+/* ============ WHATSAPP BUTTONS ============ */
+$('#heroWhatsBtn').addEventListener('click', openWhatsApp);
+$('#ctaWhatsBtn').addEventListener('click', openWhatsApp);
+$('#whatsappFooterBtn').addEventListener('click', (e) => {
+  e.preventDefault();
+  openWhatsApp();
+});
+
+/* ============ PREVIEW BUTTON ============ */
+$('#previewBtn').addEventListener('click', () => {
+  $('#preview').scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
+/* ============ SHARE ============ */
+async function shareApp() {
+  const text = 'FIDECRUX — Sua jornada de fé. Palavra, oração, louvor e devoções católicas. Em breve nas lojas!';
+  const url = location.href;
+  if (navigator.share) {
+    try {
+      await navigator.share({ title: 'FIDECRUX', text, url });
+      return;
+    } catch (e) {}
+  }
+  try {
+    await navigator.clipboard.writeText(`${text}\n${url}`);
+    showToast('Link copiado!', 'success');
+  } catch {
+    showToast('Copie o link manualmente', 'error');
+  }
+}
+$('#shareBtn').addEventListener('click', shareApp);
+
+/* ============ SOCIAL ============ */
+$('#instagramBtn').addEventListener('click', (e) => {
+  e.preventDefault();
+  showToast('Instagram em breve · @fidecrux');
+});
+$('#tiktokBtn').addEventListener('click', (e) => {
+  e.preventDefault();
+  showToast('TikTok em breve · @fidecrux');
+});
+
+/* ============ FOOTER LINKS ============ */
+$('#privacyLink').addEventListener('click', (e) => {
+  e.preventDefault();
+  showToast('Política de privacidade em breve');
+});
+$('#termsLink').addEventListener('click', (e) => {
+  e.preventDefault();
+  showToast('Termos de uso em breve');
+});
+
+/* ============ PREVENT DOUBLE TAP ZOOM ============ */
+let lastTouchEnd = 0;
+document.addEventListener('touchend', (e) => {
+  const now = Date.now();
+  if (now - lastTouchEnd <= 300) e.preventDefault();
+  lastTouchEnd = now;
+}, { passive: false });
+
+/* ============ DYNAMIC YEAR ============ */
+const footerCopy = document.querySelector('.footer-copy');
+if (footerCopy) {
+  footerCopy.innerHTML = footerCopy.innerHTML.replace('2026', new Date().getFullYear());
+}
+
+
+})();
+</script>
+</body>
+</html>
