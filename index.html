@@ -1,1724 +1,492 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0a1612">
-<meta name="description" content="FIDECRUX — Sua jornada de fé. Palavra, oração, louvor e devoções católicas. Em breve nas lojas.">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="FIDECRUX">
-<title>FIDECRUX — Sua jornada de fé</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%23123c2f'/%3E%3Crect x='240' y='120' width='32' height='280' fill='%23f0d99c' rx='4'/%3E%3Crect x='150' y='220' width='212' height='32' fill='%23f0d99c' rx='4'/%3E%3C/svg%3E">
-<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%23123c2f'/%3E%3Crect x='240' y='120' width='32' height='280' fill='%23f0d99c' rx='4'/%3E%3Crect x='150' y='220' width='212' height='32' fill='%23f0d99c' rx='4'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<style>
-:root{
-  --ink:#0a1612;
-  --ink-soft:#152320;
-  --ink-mid:#1a2a24;
-  --green:#123c2f;
-  --green2:#1b4d3d;
-  --green3:#27664e;
-  --gold:#d5b36a;
-  --gold-soft:#e8d195;
-  --gold-deep:#a67d35;
-  --gold-muted:#8a6525;
-  --cream:#f8f5ed;
-  --cream-warm:#f2ede1;
-  --paper:#fffdf8;
-  --text:#21352b;
-  --muted:#6f7c72;
-  --muted-soft:#8a958d;
-  --line:rgba(18,60,47,.08);
-  --line-strong:rgba(18,60,47,.12);
-  --shadow-sm:0 2px 8px rgba(18,60,47,.06);
-  --shadow-md:0 8px 24px rgba(18,60,47,.08);
-  --shadow-lg:0 24px 60px rgba(18,60,47,.14);
-  --shadow-xl:0 40px 100px rgba(18,60,47,.2);
-  --serif:'Cormorant Garamond', Georgia, serif;
-  --sans:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-}
-*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{
-  font-family:var(--sans);
-  background:#050a08;
-  color:var(--text);
-  line-height:1.6;
-  overflow-x:hidden;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  font-feature-settings:'ss01','cv11';
-}
-img,svg{display:block;max-width:100%}
-a{color:inherit;text-decoration:none}
-button{font:inherit;cursor:pointer;border:0;background:none;color:inherit;padding:0}
-
-/* ============ SITE CONTAINER ============ */
-.site{
-  max-width:480px;
-  margin:0 auto;
-  min-height:100vh;
-  background:var(--ink);
-  position:relative;
-  overflow-x:hidden;
-  box-shadow:0 0 100px rgba(0,0,0,.4);
-}
-@media (max-width:480px){
-  .site{box-shadow:none}
-}
-
-/* ============ TOP BAR ============ */
-.topbar{
-  position:fixed;
-  top:0;
-  left:50%;
-  transform:translateX(-50%);
-  width:100%;
-  max-width:480px;
-  z-index:100;
-  padding:16px 20px;
-  padding-top:calc(16px + env(safe-area-inset-top));
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  transition:background .3s ease, backdrop-filter .3s ease, border-color .3s ease;
-  border-bottom:1px solid transparent;
-}
-.topbar.scrolled{
-  background:rgba(10,22,18,.85);
-  backdrop-filter:blur(20px) saturate(180%);
-  -webkit-backdrop-filter:blur(20px) saturate(180%);
-  border-bottom-color:rgba(213,179,106,.1);
-}
-.brand{
-  display:flex;
-  align-items:center;
-  gap:11px;
-}
-.brand-logo{
-  width:38px;
-  height:38px;
-  border-radius:12px;
-  background:linear-gradient(145deg,var(--green2),var(--green));
-  color:var(--gold-soft);
-  display:grid;
-  place-items:center;
-  font-size:19px;
-  font-weight:700;
-  font-family:var(--serif);
-  box-shadow:
-    0 1px 0 rgba(240,217,156,.15) inset,
-    0 6px 16px rgba(0,0,0,.3);
-  border:1px solid rgba(240,217,156,.15);
-}
-.brand-text{display:flex;flex-direction:column;line-height:1.05}
-.brand-name{
-  font-family:var(--sans);
-  font-size:.95rem;
-  font-weight:800;
-  color:#fff;
-  letter-spacing:.12em;
-}
-.brand-sub{
-  font-size:.56rem;
-  color:rgba(240,217,156,.6);
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  margin-top:4px;
-  font-weight:600;
-}
-.menu-btn{
-  width:40px;
-  height:40px;
-  border-radius:12px;
-  display:grid;
-  place-items:center;
-  color:rgba(255,255,255,.7);
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.08);
-  transition:all .2s;
-}
-.menu-btn:active{
-  background:rgba(240,217,156,.15);
-  color:var(--gold-soft);
-  transform:scale(.94);
-}
-
-/* ============ HERO ============ */
-.hero{
-  position:relative;
-  padding:calc(120px + env(safe-area-inset-top)) 24px 60px;
-  background:var(--ink);
-  overflow:hidden;
-}
-.hero::before{
-  content:"";
-  position:absolute;
-  top:-200px;
-  left:50%;
-  transform:translateX(-50%);
-  width:600px;
-  height:600px;
-  background:radial-gradient(circle, rgba(213,179,106,.12) 0%, rgba(39,102,78,.08) 30%, transparent 70%);
-  pointer-events:none;
-  animation:heroGlow 8s ease-in-out infinite;
-}
-.hero::after{
-  content:"✝";
-  position:absolute;
-  top:60px;
-  right:-40px;
-  font-size:400px;
-  font-family:var(--serif);
-  color:rgba(240,217,156,.03);
-  line-height:1;
-  pointer-events:none;
-  font-weight:700;
-}
-@keyframes heroGlow{
-  0%,100%{transform:translateX(-50%) scale(1);opacity:.8}
-  50%{transform:translateX(-50%) scale(1.15);opacity:1}
-}
-
-.hero-inner{
-  position:relative;
-  z-index:2;
-}
-
-.hero-badge{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:8px 16px 8px 12px;
-  background:rgba(213,179,106,.08);
-  border:1px solid rgba(213,179,106,.2);
-  border-radius:99px;
-  font-size:.68rem;
-  font-weight:700;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  color:var(--gold-soft);
-  margin-bottom:28px;
-  animation:fadeUp .8s cubic-bezier(.16,1,.3,1) both;
-}
-.hero-badge .dot{
-  width:6px;
-  height:6px;
-  border-radius:50%;
-  background:#4ade80;
-  box-shadow:0 0 12px #4ade80, 0 0 24px rgba(74,222,128,.4);
-  animation:dotPulse 2s ease-in-out infinite;
-}
-@keyframes dotPulse{
-  0%,100%{opacity:1;transform:scale(1)}
-  50%{opacity:.6;transform:scale(1.2)}
-}
-
-.hero-title{
-  font-family:var(--serif);
-  font-size:clamp(2.6rem, 11vw, 3.4rem);
-  line-height:.98;
-  font-weight:500;
-  color:#fff;
-  letter-spacing:-.02em;
-  margin-bottom:22px;
-  animation:fadeUp .9s cubic-bezier(.16,1,.3,1) .1s both;
-}
-.hero-title em{
-  color:var(--gold-soft);
-  font-style:italic;
-  font-weight:400;
-  position:relative;
-  display:inline-block;
-}
-.hero-title em::after{
-  content:"";
-  position:absolute;
-  bottom:6px;
-  left:0;
-  right:0;
-  height:1px;
-  background:linear-gradient(90deg, transparent, var(--gold), transparent);
-  opacity:.5;
-}
-
-.hero-desc{
-  font-size:1.02rem;
-  color:rgba(255,255,255,.55);
-  line-height:1.65;
-  margin-bottom:36px;
-  max-width:380px;
-  font-weight:400;
-  animation:fadeUp .9s cubic-bezier(.16,1,.3,1) .2s both;
-}
-.hero-desc strong{
-  color:rgba(255,255,255,.9);
-  font-weight:600;
-}
-
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(24px)}
-  to{opacity:1;transform:translateY(0)}
-}
-
-/* ============ HERO CTA ============ */
-.hero-cta{
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-  animation:fadeUp .9s cubic-bezier(.16,1,.3,1) .3s both;
-}
-
-.btn{
-  position:relative;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-  padding:18px 24px;
-  border-radius:16px;
-  font-size:.95rem;
-  font-weight:700;
-  letter-spacing:.01em;
-  transition:transform .15s ease, box-shadow .25s ease;
-  overflow:hidden;
-  -webkit-tap-highlight-color:transparent;
-}
-.btn:active{transform:scale(.97)}
-
-.btn-whatsapp{
-  background:linear-gradient(145deg, #25d366, #1fa953);
-  color:#fff;
-  box-shadow:
-    0 1px 0 rgba(255,255,255,.25) inset,
-    0 12px 32px rgba(37,211,102,.35),
-    0 4px 12px rgba(0,0,0,.2);
-  font-size:1rem;
-}
-.btn-whatsapp:active{
-  box-shadow:
-    0 1px 0 rgba(255,255,255,.25) inset,
-    0 6px 20px rgba(37,211,102,.35);
-}
-.btn-whatsapp::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(90deg, transparent, rgba(255,255,255,.15), transparent);
-  transform:translateX(-100%);
-  animation:btnShine 3s ease-in-out infinite;
-}
-@keyframes btnShine{
-  0%,60%{transform:translateX(-100%)}
-  100%{transform:translateX(100%)}
-}
-.btn-whatsapp .icon-wa{
-  width:24px;
-  height:24px;
-  flex-shrink:0;
-  filter:drop-shadow(0 1px 2px rgba(0,0,0,.2));
-}
-.btn-whatsapp .arrow{
-  position:absolute;
-  right:20px;
-  width:18px;
-  height:18px;
-  transition:transform .3s;
-}
-.btn-whatsapp:active .arrow{
-  transform:translateX(4px);
-}
-
-.btn-ghost{
-  background:rgba(255,255,255,.04);
-  color:rgba(255,255,255,.85);
-  border:1px solid rgba(255,255,255,.1);
-  font-size:.88rem;
-  font-weight:600;
-  padding:15px 20px;
-}
-.btn-ghost:active{background:rgba(255,255,255,.08)}
-.btn-ghost svg{width:18px;height:18px;color:var(--gold-soft)}
-
-.hero-note{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  margin-top:20px;
-  font-size:.78rem;
-  color:rgba(255,255,255,.35);
-  animation:fadeUp .9s cubic-bezier(.16,1,.3,1) .4s both;
-}
-.hero-note svg{width:14px;height:14px;color:rgba(240,217,156,.5)}
-
-/* ============ SECTION BASE ============ */
-.section{
-  padding:80px 24px;
-  position:relative;
-}
-.section-dark{
-  background:var(--ink);
-  color:#fff;
-}
-.section-light{
-  background:var(--cream);
-  color:var(--text);
-}
-
-.eyebrow{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  font-size:.66rem;
-  letter-spacing:.24em;
-  text-transform:uppercase;
-  font-weight:700;
-  margin-bottom:18px;
-}
-.eyebrow::before{
-  content:"";
-  width:20px;
-  height:1px;
-  background:currentColor;
-  opacity:.4;
-}
-
-.section-dark .eyebrow{color:var(--gold)}
-.section-light .eyebrow{color:var(--gold-muted)}
-
-.section-title{
-  font-family:var(--serif);
-  font-size:clamp(2rem, 8vw, 2.6rem);
-  line-height:1.05;
-  font-weight:500;
-  letter-spacing:-.02em;
-  margin-bottom:16px;
-}
-.section-dark .section-title{color:#fff}
-.section-light .section-title{color:var(--green)}
-.section-title em{
-  font-style:italic;
-  font-weight:400;
-}
-.section-dark .section-title em{color:var(--gold-soft)}
-.section-light .section-title em{color:var(--gold-muted)}
-
-.section-desc{
-  font-size:.95rem;
-  line-height:1.65;
-  max-width:380px;
-  margin-bottom:40px;
-}
-.section-dark .section-desc{color:rgba(255,255,255,.5)}
-.section-light .section-desc{color:var(--muted)}
-
-/* ============ FEATURES (premium list) ============ */
-.feature-list{
-  display:flex;
-  flex-direction:column;
-  gap:1px;
-  background:var(--line);
-  border-radius:22px;
-  overflow:hidden;
-  box-shadow:var(--shadow-md);
-}
-.feature{
-  display:flex;
-  gap:18px;
-  padding:22px 22px;
-  background:var(--paper);
-  transition:background .2s;
-  position:relative;
-}
-.feature:active{background:var(--cream-warm)}
-.feature-icon{
-  width:44px;
-  height:44px;
-  flex-shrink:0;
-  border-radius:12px;
-  background:linear-gradient(145deg, rgba(240,217,156,.4), rgba(213,179,106,.15));
-  border:1px solid rgba(213,179,106,.25);
-  display:grid;
-  place-items:center;
-  color:var(--gold-deep);
-  position:relative;
-}
-.feature-icon::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:inherit;
-  background:linear-gradient(145deg, rgba(255,255,255,.5), transparent);
-  pointer-events:none;
-}
-.feature-icon svg{
-  width:22px;
-  height:22px;
-  position:relative;
-  z-index:1;
-}
-.feature-body{flex:1;min-width:0}
-.feature-title{
-  font-size:.95rem;
-  font-weight:700;
-  color:var(--green);
-  margin-bottom:3px;
-  letter-spacing:-.01em;
-}
-.feature-desc{
-  font-size:.82rem;
-  color:var(--muted);
-  line-height:1.5;
-}
-
-/* ============ PREVIEW / PHONE ============ */
-.preview-wrap{
-  display:flex;
-  justify-content:center;
-  padding:20px 0 40px;
-  position:relative;
-}
-.preview-wrap::before{
-  content:"";
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  width:400px;
-  height:400px;
-  background:radial-gradient(circle, rgba(213,179,106,.15), transparent 60%);
-  pointer-events:none;
-  filter:blur(40px);
-}
-
-.phone{
-  position:relative;
-  width:260px;
-  animation:floatPhone 6s ease-in-out infinite;
-  z-index:2;
-}
-@keyframes floatPhone{
-  0%,100%{transform:translateY(0) rotate(-1deg)}
-  50%{transform:translateY(-10px) rotate(1deg)}
-}
-.phone-frame{
-  background:#000;
-  border-radius:44px;
-  padding:8px;
-  box-shadow:
-    0 0 0 2px rgba(255,255,255,.06) inset,
-    0 0 0 8px rgba(10,22,18,.9),
-    0 50px 100px rgba(0,0,0,.5),
-    0 0 120px rgba(213,179,106,.15);
-  position:relative;
-  overflow:hidden;
-}
-.phone-frame::before{
-  content:"";
-  position:absolute;
-  top:16px;
-  left:50%;
-  transform:translateX(-50%);
-  width:88px;
-  height:26px;
-  background:#000;
-  border-radius:99px;
-  z-index:3;
-}
-.phone-screen{
-  background:var(--cream);
-  border-radius:36px;
-  overflow:hidden;
-  aspect-ratio:9/19.5;
-  display:flex;
-  flex-direction:column;
-  position:relative;
-}
-
-/* Mini UI */
-.m-status{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:10px 22px 0;
-  font-size:8px;
-  font-weight:800;
-  color:var(--ink);
-  height:36px;
-}
-.m-header{
-  padding:8px 14px;
-  display:flex;
-  align-items:center;
-  gap:8px;
-  background:rgba(255,253,248,.9);
-  border-bottom:1px solid rgba(18,60,47,.06);
-}
-.m-logo{
-  width:22px;
-  height:22px;
-  border-radius:7px;
-  background:var(--green);
-  color:var(--gold-soft);
-  display:grid;
-  place-items:center;
-  font-size:11px;
-  font-weight:700;
-  font-family:var(--serif);
-}
-.m-title{
-  font-size:8.5px;
-  font-weight:800;
-  color:var(--green);
-  letter-spacing:.1em;
-}
-.m-icons{
-  margin-left:auto;
-  display:flex;
-  gap:6px;
-  color:var(--green);
-  font-size:9px;
-}
-.m-content{
-  flex:1;
-  padding:12px;
-  overflow:hidden;
-}
-.m-greet{
-  font-size:16px;
-  font-weight:800;
-  color:var(--green);
-  line-height:1;
-  margin-bottom:4px;
-  letter-spacing:-.02em;
-}
-.m-date{
-  font-size:8px;
-  color:var(--muted);
-  margin-bottom:12px;
-  font-weight:500;
-}
-.m-verse{
-  background:linear-gradient(145deg, var(--green2), var(--green));
-  color:#fff;
-  border-radius:14px;
-  padding:14px;
-  margin-bottom:12px;
-  position:relative;
-  overflow:hidden;
-  box-shadow:0 8px 20px rgba(18,60,47,.25);
-}
-.m-verse::before{
-  content:"✝";
-  position:absolute;
-  top:-20px;
-  right:-10px;
-  font-size:80px;
-  color:rgba(240,217,156,.08);
-  font-family:var(--serif);
-  line-height:1;
-  font-weight:700;
-}
-.m-verse::after{
-  content:"";
-  position:absolute;
-  top:-30px;
-  left:-30px;
-  width:80px;
-  height:80px;
-  background:radial-gradient(circle, rgba(213,179,106,.15), transparent 70%);
-  border-radius:50%;
-}
-.m-verse-label{
-  font-size:6px;
-  letter-spacing:.16em;
-  color:var(--gold-soft);
-  font-weight:800;
-  margin-bottom:6px;
-  position:relative;
-}
-.m-verse-text{
-  font-family:var(--serif);
-  font-size:12px;
-  line-height:1.35;
-  margin-bottom:5px;
-  position:relative;
-  font-style:italic;
-  font-weight:500;
-}
-.m-verse-ref{
-  font-size:7px;
-  color:rgba(255,255,255,.6);
-  position:relative;
-}
-.m-section-label{
-  font-size:6px;
-  letter-spacing:.16em;
-  color:var(--muted);
-  font-weight:800;
-  text-transform:uppercase;
-  margin:10px 0 6px;
-}
-.m-quick{
-  display:grid;
-  grid-template-columns:repeat(4, 1fr);
-  gap:5px;
-}
-.m-quick-item{
-  background:var(--paper);
-  border:1px solid rgba(18,60,47,.06);
-  border-radius:9px;
-  padding:9px 2px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:3px;
-  font-size:6px;
-  font-weight:700;
-  color:var(--text);
-}
-.m-quick-icon{
-  width:18px;
-  height:18px;
-  border-radius:5px;
-  background:linear-gradient(145deg, var(--gold-soft), var(--gold));
-  color:#3d321c;
-  display:grid;
-  place-items:center;
-  font-size:9px;
-}
-.m-nav{
-  height:44px;
-  background:var(--paper);
-  border-top:1px solid rgba(18,60,47,.06);
-  display:flex;
-  padding-bottom:8px;
-}
-.m-nav-item{
-  flex:1;
-  display:grid;
-  place-items:center;
-  font-size:12px;
-  color:var(--muted-soft);
-}
-.m-nav-item.active{color:var(--green)}
-
-/* ============ CTA WHATSAPP SECTION ============ */
-.cta-whatsapp{
-  padding:60px 24px;
-  background:linear-gradient(180deg, var(--cream) 0%, var(--cream-warm) 100%);
-  text-align:center;
-  position:relative;
-  overflow:hidden;
-}
-.cta-whatsapp::before{
-  content:"";
-  position:absolute;
-  top:-100px;
-  left:-100px;
-  width:300px;
-  height:300px;
-  background:radial-gradient(circle, rgba(37,211,102,.08), transparent 70%);
-  border-radius:50%;
-}
-.cta-whatsapp::after{
-  content:"";
-  position:absolute;
-  bottom:-100px;
-  right:-100px;
-  width:250px;
-  height:250px;
-  background:radial-gradient(circle, rgba(213,179,106,.1), transparent 70%);
-  border-radius:50%;
-}
-.cta-whatsapp > *{position:relative;z-index:1}
-
-.cta-icon{
-  width:64px;
-  height:64px;
-  margin:0 auto 20px;
-  border-radius:20px;
-  background:linear-gradient(145deg, #25d366, #1fa953);
-  display:grid;
-  place-items:center;
-  box-shadow:
-    0 1px 0 rgba(255,255,255,.3) inset,
-    0 20px 40px rgba(37,211,102,.3);
-  animation:iconFloat 3s ease-in-out infinite;
-}
-@keyframes iconFloat{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-6px)}
-}
-.cta-icon svg{
-  width:32px;
-  height:32px;
-  color:#fff;
-  filter:drop-shadow(0 2px 4px rgba(0,0,0,.2));
-}
-
-.cta-title{
-  font-family:var(--serif);
-  font-size:1.85rem;
-  line-height:1.1;
-  font-weight:500;
-  color:var(--green);
-  letter-spacing:-.02em;
-  margin-bottom:12px;
-}
-.cta-title em{
-  color:var(--gold-muted);
-  font-style:italic;
-  font-weight:400;
-}
-.cta-desc{
-  font-size:.92rem;
-  color:var(--muted);
-  line-height:1.6;
-  max-width:340px;
-  margin:0 auto 28px;
-}
-
-/* ============ STORES ============ */
-.stores-section{
-  padding:60px 24px;
-  background:var(--cream-warm);
-}
-.stores-label{
-  font-size:.64rem;
-  letter-spacing:.24em;
-  text-transform:uppercase;
-  color:var(--gold-muted);
-  font-weight:700;
-  text-align:center;
-  margin-bottom:20px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-}
-.stores-label::before,
-.stores-label::after{
-  content:"";
-  width:24px;
-  height:1px;
-  background:rgba(138,101,37,.3);
-}
-.stores-row{
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-  max-width:340px;
-  margin:0 auto;
-}
-.store-badge{
-  display:flex;
-  align-items:center;
-  gap:14px;
-  padding:15px 20px;
-  background:#000;
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:14px;
-  position:relative;
-  overflow:hidden;
-  box-shadow:0 15px 40px rgba(0,0,0,.15);
-  transition:transform .15s;
-  opacity:.85;
-}
-.store-badge:active{transform:scale(.98)}
-.store-badge::after{
-  content:"";
-  position:absolute;
-  top:0;
-  left:-100%;
-  width:100%;
-  height:100%;
-  background:linear-gradient(90deg, transparent, rgba(240,217,156,.35), transparent);
-  animation:badgeShine 3.5s ease-in-out infinite;
-}
-@keyframes badgeShine{
-  0%{left:-100%}
-  55%,100%{left:100%}
-}
-.store-badge .s-icon{
-  width:32px;
-  height:32px;
-  flex-shrink:0;
-  display:grid;
-  place-items:center;
-  position:relative;
-  z-index:1;
-}
-.store-badge .s-icon svg{width:100%;height:100%}
-.store-badge .s-text{
-  text-align:left;
-  flex:1;
-  position:relative;
-  z-index:1;
-}
-.store-badge .s-small{
-  font-size:.56rem;
-  color:rgba(255,255,255,.5);
-  letter-spacing:.06em;
-}
-.store-badge .s-name{
-  font-size:.95rem;
-  font-weight:700;
-  color:#fff;
-  letter-spacing:.01em;
-  line-height:1.15;
-  margin-top:2px;
-}
-.store-badge .s-tag{
-  position:absolute;
-  top:-6px;
-  right:-6px;
-  background:linear-gradient(145deg, var(--gold-soft), var(--gold));
-  color:#3d321c;
-  font-size:.48rem;
-  font-weight:900;
-  letter-spacing:.12em;
-  padding:4px 10px;
-  border-radius:99px;
-  box-shadow:0 4px 14px rgba(213,179,106,.45);
-  z-index:5;
-}
-
-/* ============ FAQ ============ */
-.faq-list{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-}
-.faq-item{
-  background:var(--paper);
-  border:1px solid var(--line);
-  border-radius:16px;
-  overflow:hidden;
-  transition:all .25s;
-}
-.faq-item.open{
-  border-color:rgba(213,179,106,.35);
-  box-shadow:0 12px 30px rgba(18,60,47,.08);
-}
-.faq-q{
-  width:100%;
-  padding:20px 22px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:14px;
-  text-align:left;
-  font-size:.92rem;
-  font-weight:600;
-  color:var(--green);
-  letter-spacing:-.01em;
-  transition:background .15s;
-}
-.faq-q:active{background:rgba(18,60,47,.02)}
-.faq-icon{
-  width:24px;
-  height:24px;
-  flex-shrink:0;
-  border-radius:8px;
-  background:rgba(18,60,47,.05);
-  display:grid;
-  place-items:center;
-  transition:all .3s;
-  color:var(--gold-deep);
-}
-.faq-item.open .faq-icon{
-  background:var(--green);
-  color:var(--gold-soft);
-  transform:rotate(180deg);
-}
-.faq-icon svg{width:14px;height:14px}
-.faq-a{
-  max-height:0;
-  overflow:hidden;
-  transition:max-height .4s cubic-bezier(.16,1,.3,1);
-  padding:0 22px;
-  color:var(--muted);
-  font-size:.85rem;
-  line-height:1.7;
-}
-.faq-item.open .faq-a{
-  max-height:300px;
-  padding-bottom:22px;
-}
-
-/* ============ FOOTER ============ */
-.footer{
-  background:var(--ink);
-  color:rgba(255,255,255,.5);
-  padding:60px 24px calc(40px + env(safe-area-inset-bottom));
-  position:relative;
-  overflow:hidden;
-}
-.footer::before{
-  content:"";
-  position:absolute;
-  top:-100px;
-  left:50%;
-  transform:translateX(-50%);
-  width:400px;
-  height:400px;
-  background:radial-gradient(circle, rgba(213,179,106,.06), transparent 70%);
-  border-radius:50%;
-  pointer-events:none;
-}
-.footer-inner{
-  position:relative;
-  z-index:1;
-  text-align:center;
-}
-.footer-brand{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:12px;
-  margin-bottom:32px;
-}
-.footer-logo{
-  width:52px;
-  height:52px;
-  border-radius:15px;
-  background:linear-gradient(145deg, var(--green2), var(--green));
-  color:var(--gold-soft);
-  display:grid;
-  place-items:center;
-  font-size:26px;
-  font-family:var(--serif);
-  font-weight:700;
-  box-shadow:
-    0 1px 0 rgba(240,217,156,.15) inset,
-    0 12px 24px rgba(0,0,0,.3);
-  border:1px solid rgba(240,217,156,.15);
-}
-.footer-name{
-  font-size:1.05rem;
-  font-weight:800;
-  color:#fff;
-  letter-spacing:.14em;
-}
-.footer-tag{
-  font-size:.65rem;
-  letter-spacing:.24em;
-  text-transform:uppercase;
-  color:var(--gold-soft);
-  opacity:.7;
-  margin-top:-4px;
-  font-weight:600;
-}
-.footer-social{
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  margin-bottom:32px;
-}
-.social-btn{
-  width:46px;
-  height:46px;
-  border-radius:14px;
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.08);
-  display:grid;
-  place-items:center;
-  color:rgba(255,255,255,.6);
-  transition:all .2s;
-}
-.social-btn:active{
-  background:rgba(240,217,156,.15);
-  color:var(--gold-soft);
-  border-color:rgba(240,217,156,.3);
-  transform:scale(.94);
-}
-.social-btn svg{width:20px;height:20px}
-.footer-links{
-  display:flex;
-  justify-content:center;
-  gap:20px;
-  flex-wrap:wrap;
-  font-size:.78rem;
-  margin-bottom:28px;
-}
-.footer-links a{
-  color:rgba(255,255,255,.4);
-  transition:color .2s;
-}
-.footer-links a:active{color:var(--gold-soft)}
-.footer-copy{
-  font-size:.72rem;
-  color:rgba(255,255,255,.3);
-  line-height:1.7;
-  letter-spacing:.01em;
-}
-.footer-copy .heart{
-  color:var(--gold);
-  display:inline-block;
-  animation:heartbeat 2s ease-in-out infinite;
-  margin:0 2px;
-}
-@keyframes heartbeat{
-  0%,100%{transform:scale(1)}
-  50%{transform:scale(1.25)}
-}
-
-/* ============ TOAST ============ */
-.toast{
-  position:fixed;
-  bottom:calc(24px + env(safe-area-inset-bottom));
-  left:50%;
-  transform:translate(-50%, 100px);
-  background:var(--green);
-  color:#fff;
-  padding:14px 22px;
-  border-radius:14px;
-  font-size:.85rem;
-  font-weight:600;
-  box-shadow:0 15px 40px rgba(0,0,0,.3);
-  z-index:1000;
-  opacity:0;
-  transition:transform .35s cubic-bezier(.16,1,.3,1), opacity .35s;
-  max-width:calc(100% - 40px);
-  text-align:center;
-  pointer-events:none;
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-.toast.show{
-  opacity:1;
-  transform:translate(-50%, 0);
-}
-.toast svg{
-  width:18px;
-  height:18px;
-  flex-shrink:0;
-}
-.toast.success{
-  background:linear-gradient(145deg, #25d366, #1fa953);
-}
-
-/* ============ REVEAL ============ */
-.reveal{
-  opacity:0;
-  transform:translateY(30px);
-  transition:opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1);
-}
-.reveal.in-view{
-  opacity:1;
-  transform:none;
-}
-
-/* ============ FLOATING ELEMENTS ============ */
-.floating-cross{
-  position:absolute;
-  font-family:var(--serif);
-  color:rgba(240,217,156,.15);
-  pointer-events:none;
-  animation:floatCross 8s ease-in-out infinite;
-}
-@keyframes floatCross{
-  0%,100%{transform:translate(0,0) rotate(0)}
-  50%{transform:translate(-10px,15px) rotate(3deg)}
-}
-
-/* ============ RESPONSIVE ============ */
-@media (min-width:480px){
-  .site{min-height:100vh}
-  .hero{padding-top:140px;padding-bottom:80px}
-  .hero-title{font-size:3.4rem}
-}
-
-/* ============ SMOOTH SCROLL OFFSET ============ */
-#waitlist{scroll-margin-top:80px}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a1612">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="description" content="FIDECRUX — Palavra, oração, louvor e devoções em um só lugar. Em breve.">
+  <title>FIDECRUX — Sua jornada de fé</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* =========================================================
+       FIDECRUX — landing page mobile-first
+       Única dependência externa: Google Fonts (opcional).
+       ========================================================= */
+    :root {
+      --ink:#0a1612; --green:#123c2f; --green-2:#1b4d3d;
+      --gold:#d5b36a; --gold-light:#f0d99c; --gold-deep:#a67d35;
+      --cream:#f8f5ed; --cream-2:#f2ede1; --paper:#fffdf8;
+      --text:#21352b; --muted:#6f7c72;
+      --serif:'Cormorant Garamond', Georgia, serif;
+      --sans:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --ease:cubic-bezier(.16,1,.3,1);
+      --safe-top:env(safe-area-inset-top, 0px);
+      --safe-bottom:env(safe-area-inset-bottom, 0px);
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; scroll-padding-top:88px; background:var(--ink); }
+    body { margin:0; min-width:320px; color:var(--text); background:var(--cream); font-family:var(--sans); -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+    button, a { -webkit-tap-highlight-color:transparent; }
+    button { font:inherit; }
+    a { color:inherit; text-decoration:none; }
+    button:focus-visible, a:focus-visible { outline:3px solid var(--gold); outline-offset:4px; }
+    .site-shell { width:100%; max-width:480px; margin:0 auto; overflow:hidden; background:var(--cream); position:relative; box-shadow:0 0 80px #0000000d; }
+    .serif { font-family:var(--serif); font-weight:600; letter-spacing:-.035em; }
+    .eyebrow { display:flex; align-items:center; gap:10px; color:var(--gold-deep); font-size:10px; font-weight:800; letter-spacing:.19em; text-transform:uppercase; }
+    .eyebrow::before { content:""; width:22px; height:1px; background:currentColor; }
+    .section-light { background:var(--cream); }
+    .section-pad { padding:76px 24px; }
+    .section-title { margin:15px 0 12px; font:600 clamp(36px, 10vw, 44px)/.99 var(--serif); letter-spacing:-.04em; color:var(--text); }
+    .section-copy { margin:0; max-width:340px; color:var(--muted); font-size:13px; line-height:1.8; }
+    .reveal { opacity:0; transform:translateY(30px); transition:opacity .8s var(--ease), transform .8s var(--ease); }
+    .reveal.is-visible { opacity:1; transform:translateY(0); }
+    .topbar { position:fixed; z-index:20; top:0; left:50%; transform:translateX(-50%); width:100%; max-width:480px; padding:calc(13px + var(--safe-top)) 22px 13px; display:flex; align-items:center; justify-content:space-between; color:var(--cream); transition:background .35s, border-color .35s, backdrop-filter .35s; border-bottom:1px solid transparent; }
+    .topbar.scrolled { background:#0a1612e8; border-color:#ffffff12; backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); }
+    .brand { display:flex; align-items:center; gap:10px; min-width:0; }
+    .brand-mark { width:34px; height:34px; display:grid; place-items:center; border:1px solid #d5b36a77; border-radius:50%; color:var(--gold-light); font-family:var(--serif); font-size:23px; line-height:1; flex-shrink:0; }
+    .brand-name { font-size:14px; letter-spacing:.19em; font-weight:800; }
+    .brand-sub { margin-top:3px; font-size:8px; letter-spacing:.16em; color:#d7d8ccad; font-weight:600; }
+    .share-btn { width:42px; height:42px; border-radius:50%; border:1px solid #ffffff25; color:var(--cream); background:#ffffff08; display:grid; place-items:center; cursor:pointer; transition:background .25s, transform .2s; }
+    .share-btn:hover { background:#ffffff16; }
+    .share-btn svg { width:18px; height:18px; }
+    .hero { min-height:780px; padding:150px 25px 76px; color:var(--cream); background:radial-gradient(ellipse at 50% 25%, #1b4d3d 0%, #10271e 37%, var(--ink) 73%); position:relative; isolation:isolate; text-align:center; }
+    .hero::before { content:""; position:absolute; width:390px; height:390px; top:65px; left:50%; transform:translateX(-50%); border-radius:50%; background:radial-gradient(circle, #d5b36a1c 0%, #d5b36a09 37%, transparent 70%); filter:blur(4px); z-index:-1; animation:glow 8s ease-in-out infinite alternate; }
+    .hero-cross { position:absolute; z-index:-1; top:120px; left:50%; transform:translateX(-50%); color:#f8f5ed; opacity:.035; font-family:var(--serif); font-size:360px; line-height:1; pointer-events:none; }
+    .hero-content { position:relative; }
+    .launch-badge { display:inline-flex; align-items:center; gap:9px; padding:9px 13px; border:1px solid #d5b36a35; background:#0a16127a; border-radius:999px; color:#e8d9ae; font-size:9px; font-weight:800; letter-spacing:.13em; animation:fadeUp .8s .05s both; }
+    .pulse-dot { width:6px; height:6px; background:#8bbf91; border-radius:50%; box-shadow:0 0 0 4px #8bbf9118; animation:pulse 2s infinite; }
+    .hero h1 { max-width:410px; margin:26px auto 18px; font:600 clamp(48px, 13.5vw, 62px)/.91 var(--serif); letter-spacing:-.055em; animation:fadeUp .9s .14s both; }
+    .hero h1 em { display:inline-block; color:var(--gold-light); font-weight:500; }
+    .hero-copy { max-width:330px; margin:0 auto; color:#e0e5dbb8; font-size:13px; line-height:1.85; font-weight:300; animation:fadeUp .9s .23s both; }
+    .hero-actions { margin:30px auto 0; max-width:355px; display:grid; gap:12px; animation:fadeUp .9s .32s both; }
+    .btn { min-height:52px; border:0; border-radius:15px; padding:15px 17px; display:flex; align-items:center; justify-content:center; gap:10px; font-size:12px; font-weight:750; cursor:pointer; transition:transform .2s, box-shadow .25s, background .25s; position:relative; overflow:hidden; }
+    .btn:active, .share-btn:active, .social-btn:active { transform:scale(.97); }
+    .btn-wa { color:#10261b; background:linear-gradient(135deg, #d8edb7, #a9d98c); box-shadow:0 10px 28px #6cae6b22, inset 0 1px #ffffffaa; }
+    .btn-wa::after { content:""; position:absolute; inset:-30% auto -30% -40%; width:28%; transform:skewX(-22deg); background:linear-gradient(90deg,transparent,#ffffff75,transparent); animation:shine 3s ease-in-out infinite; }
+    .btn-wa svg { width:20px; height:20px; flex-shrink:0; }
+    .btn-wa .arrow { margin-left:auto; font-size:19px; font-weight:400; }
+    .btn-secondary { background:#ffffff08; border:1px solid #ffffff2b; color:#f8f5ed; }
+    .hero-note { margin:15px 0 0; color:#c7d0c4a6; font-size:10px; letter-spacing:.035em; animation:fadeUp .9s .4s both; }
+    .hero-note span { color:var(--gold); margin:0 5px; }
+    .hero-bottom { display:flex; justify-content:center; align-items:center; gap:9px; margin-top:54px; color:#d7d8cc7c; font-size:9px; letter-spacing:.18em; text-transform:uppercase; }
+    .hero-bottom::before,.hero-bottom::after { content:""; width:26px; height:1px; background:#d5b36a55; }
+    /* Features */
+    .features { padding-top:77px; padding-bottom:80px; }
+    .features-head { margin-bottom:30px; }
+    .features .section-title { max-width:350px; }
+    .feature-list { border-top:1px solid #21352b1a; }
+    .feature { display:grid; grid-template-columns:48px 1fr; gap:15px; align-items:center; padding:19px 0; border-bottom:1px solid #21352b1a; }
+    .feature-icon { width:44px; height:44px; display:grid; place-items:center; border-radius:14px; color:#684d20; background:linear-gradient(145deg,#f7e9bd,#d5b36a); box-shadow:0 5px 15px #a67d3518, inset 0 1px #ffffffc4; }
+    .feature-icon svg { width:21px; height:21px; stroke:currentColor; }
+    .feature h3 { margin:0 0 5px; color:var(--text); font-size:13px; font-weight:750; }
+    .feature p { margin:0; color:var(--muted); font-size:11px; line-height:1.65; }
+    /* Preview */
+    .preview { padding:76px 22px 85px; background:radial-gradient(ellipse at 50% 63%,#163b2c 0%,#0e2119 44%,var(--ink) 78%); color:var(--cream); text-align:center; position:relative; isolation:isolate; overflow:hidden; }
+    .preview::before { content:""; position:absolute; width:330px; height:330px; top:300px; left:50%; transform:translateX(-50%); border-radius:50%; background:#d5b36a16; filter:blur(60px); z-index:-1; }
+    .preview .eyebrow { justify-content:center; color:var(--gold); }
+    .preview .eyebrow::before { display:none; }
+    .preview .section-title { color:var(--cream); max-width:330px; margin:16px auto 10px; }
+    .preview .section-copy { color:#d7d8ccad; margin:0 auto; }
+    .phone-stage { padding:34px 0 0; perspective:1000px; }
+    .phone { width:244px; max-width:78vw; margin:0 auto; padding:8px; border-radius:36px; background:linear-gradient(145deg,#34443a,#080d0a 36%,#27352c); border:1px solid #d5b36a5c; box-shadow:0 32px 65px #0008, 0 0 0 1px #ffffff10, inset 0 1px #ffffff35; animation:float 6s ease-in-out infinite; text-align:left; }
+    .phone-screen { min-height:450px; border-radius:29px; overflow:hidden; background:#f8f5ed; color:#21352b; padding:14px 12px 12px; }
+    .statusbar { display:flex; justify-content:space-between; align-items:center; padding:0 4px 13px; font-size:9px; font-weight:800; }
+    .status-icons { display:flex; align-items:center; gap:4px; }
+    .signal { width:12px; height:8px; border-bottom:2px solid #21352b; border-radius:2px; }
+    .battery { width:14px; height:7px; border:1px solid #21352b; border-radius:2px; position:relative; }
+    .battery::after { content:""; position:absolute; right:-3px; top:1px; width:2px; height:3px; background:#21352b; }
+    .app-head { display:flex; align-items:center; gap:7px; padding:0 2px 17px; }
+    .app-mark { width:27px; height:27px; display:grid; place-items:center; border-radius:50%; background:#123c2f; color:#f0d99c; font:19px var(--serif); }
+    .app-word { font-size:9px; font-weight:850; letter-spacing:.16em; }
+    .app-sub { font-size:6px; letter-spacing:.12em; color:#6f7c72; margin-top:2px; }
+    .greeting { font:600 25px/.95 var(--serif); letter-spacing:-.04em; margin:0 0 4px; }
+    .greeting-sub { font-size:8px; color:#6f7c72; margin-bottom:14px; }
+    .verse-card { position:relative; padding:15px 13px 14px; border-radius:14px; background:linear-gradient(140deg,#123c2f,#1b4d3d); color:#f8f5ed; overflow:hidden; }
+    .verse-card::after { content:"✝"; position:absolute; right:3px; bottom:-26px; color:#ffffff0b; font:100px var(--serif); }
+    .verse-label { color:#e8cf8d; font-size:6px; font-weight:800; letter-spacing:.15em; }
+    .verse-text { max-width:165px; margin:10px 0 9px; font:italic 600 20px/1.05 var(--serif); }
+    .verse-ref { font-size:7px; color:#e1e8dcbd; }
+    .quick-title { margin:17px 0 10px; font-size:9px; font-weight:800; }
+    .quick-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; }
+    .quick { text-align:center; font-size:6px; color:#526157; }
+    .quick-icon { width:38px; height:38px; margin:0 auto 6px; border-radius:12px; background:#e9e2cf; display:grid; place-items:center; color:#315442; font-size:17px; }
+    .daily-card { margin-top:14px; padding:10px; border-radius:12px; background:#eee8d8; display:flex; gap:9px; align-items:center; }
+    .daily-symbol { width:29px; height:29px; border-radius:9px; background:#d5b36a; display:grid; place-items:center; color:#493718; }
+    .daily-card strong { display:block; font-size:8px; margin-bottom:3px; }
+    .daily-card small { font-size:6px; color:#6f7c72; }
+    .bottom-nav { display:flex; justify-content:space-around; border-top:1px solid #21352b12; padding:13px 0 2px; margin-top:16px; color:#879087; font-size:6px; text-align:center; }
+    .bottom-nav span { display:block; font-size:14px; margin-bottom:4px; }
+    .bottom-nav .active { color:#1b4d3d; }
+    .preview-caption { margin:27px 0 0; color:#d7d8cc7c; font-size:10px; letter-spacing:.04em; }
+    /* Stores */
+    .stores { background:var(--cream-2); padding:69px 24px 76px; text-align:center; }
+    .store-label { display:flex; align-items:center; gap:13px; color:#7a765f; font-size:9px; letter-spacing:.2em; font-weight:800; justify-content:center; }
+    .store-label::before,.store-label::after { content:""; height:1px; background:#b7aa8b; flex:1; }
+    .store-list { display:grid; gap:12px; margin-top:28px; }
+    .store-badge { min-height:86px; display:flex; align-items:center; text-align:left; gap:14px; padding:16px 17px; border-radius:18px; border:1px solid #d5b36a58; background:linear-gradient(115deg,#fffdf8,#f8f1df 55%,#fffdf8); box-shadow:0 9px 24px #46391c0a; position:relative; overflow:hidden; }
+    .store-badge::after { content:""; position:absolute; top:-40%; bottom:-40%; left:-45%; width:25%; transform:skewX(-22deg); background:linear-gradient(90deg,transparent,#d5b36a35,transparent); animation:storeShimmer 3.5s ease-in-out infinite; }
+    .store-logo { width:38px; height:38px; display:grid; place-items:center; flex-shrink:0; }
+    .store-logo svg { width:32px; height:32px; }
+    .store-copy { flex:1; }
+    .store-copy small { display:block; color:#777b70; font-size:9px; margin-bottom:4px; }
+    .store-copy strong { display:block; color:#21352b; font-size:14px; font-weight:800; }
+    .soon-tag { padding:7px 9px; border-radius:999px; color:#6a4c18; background:#f0d99c; font-size:8px; font-weight:850; letter-spacing:.09em; white-space:nowrap; animation:tagPulse 3s ease-in-out infinite; }
+    .stores-note { margin:18px auto 0; max-width:300px; font-size:10px; line-height:1.7; color:var(--muted); }
+    /* CTA */
+    .cta { padding:76px 24px 80px; text-align:center; background:radial-gradient(ellipse at 50% 5%,#fffdf8 0%,#f6f0e2 68%,#eee4ce 100%); }
+    .cta-icon { width:76px; height:76px; margin:0 auto 25px; display:grid; place-items:center; border-radius:26px; color:#f7fff1; background:linear-gradient(145deg,#279b62,#17623e); box-shadow:0 13px 34px #1a8b4b30, inset 0 1px #ffffff66; animation:iconFloat 3s ease-in-out infinite; }
+    .cta-icon svg { width:39px; height:39px; }
+    .cta .section-title { max-width:370px; margin:0 auto 13px; }
+    .cta .section-copy { margin:0 auto; max-width:330px; }
+    .cta .btn { margin:25px auto 0; width:100%; max-width:360px; min-height:58px; font-size:13px; }
+    .phone-number { margin:15px 0 0; color:#758075; font-size:10px; letter-spacing:.08em; }
+    .phone-number strong { color:#315542; font-weight:750; }
+    .privacy-note { margin:9px 0 0; color:#8a9084; font-size:9px; }
+    /* FAQ */
+    .faq { padding-top:76px; padding-bottom:80px; }
+    .faq .section-title { margin-bottom:28px; }
+    .faq-list { border-top:1px solid #21352b1b; }
+    .faq-item { border-bottom:1px solid #21352b1b; }
+    .faq-question { display:flex; align-items:center; justify-content:space-between; gap:14px; width:100%; min-height:68px; padding:18px 0; background:transparent; border:0; text-align:left; cursor:pointer; color:var(--text); font-size:12px; line-height:1.5; font-weight:750; }
+    .faq-toggle { width:28px; height:28px; display:grid; place-items:center; flex-shrink:0; border:1px solid #d7c9a8; border-radius:50%; color:#8a6c2f; transition:transform .35s var(--ease), background .3s; }
+    .faq-toggle svg { width:13px; height:13px; }
+    .faq-question[aria-expanded="true"] .faq-toggle { transform:rotate(180deg); background:#f0d99c5c; }
+    .faq-answer { max-height:0; overflow:hidden; transition:max-height .45s var(--ease); }
+    .faq-answer p { margin:0; padding:0 30px 20px 0; color:var(--muted); font-size:11px; line-height:1.85; }
+    /* Footer */
+    .footer { padding:48px 24px calc(28px + var(--safe-bottom)); background:var(--ink); color:var(--cream); text-align:center; }
+    .footer .brand { justify-content:center; }
+    .footer .brand-mark { width:40px; height:40px; font-size:26px; }
+    .footer .brand-name { font-size:15px; }
+    .footer-tagline { margin:15px 0 23px; color:#d7d8cc9e; font:italic 500 20px var(--serif); }
+    .socials { display:flex; justify-content:center; gap:10px; margin-bottom:25px; }
+    .social-btn { width:43px; height:43px; display:grid; place-items:center; border-radius:50%; border:1px solid #ffffff22; background:#ffffff08; color:#e7e8dd; transition:transform .2s, background .2s; }
+    .social-btn:hover { background:#ffffff16; }
+    .social-btn svg { width:18px; height:18px; }
+    .footer-links { display:flex; justify-content:center; flex-wrap:wrap; gap:9px 17px; margin-bottom:26px; }
+    .footer-links a,.footer-links button { padding:5px 0; color:#d7d8ccbd; background:none; border:0; font-size:10px; cursor:pointer; }
+    .footer-links a:hover,.footer-links button:hover { color:var(--gold-light); }
+    .footer-rule { height:1px; background:#ffffff17; margin-bottom:20px; }
+    .copyright { margin:0; color:#d7d8cc77; font-size:9px; letter-spacing:.025em; }
+    .heart { display:inline-block; color:#d5b36a; animation:heartbeat 2s ease-in-out infinite; }
+    /* Toast */
+    .toast { position:fixed; z-index:50; left:50%; bottom:calc(22px + var(--safe-bottom)); width:max-content; max-width:calc(100vw - 32px); display:flex; align-items:center; gap:9px; padding:13px 17px; border:1px solid #ffffff17; border-radius:14px; color:#f8f5ed; background:#14291fef; box-shadow:0 12px 38px #0004; font-size:12px; font-weight:600; opacity:0; pointer-events:none; transform:translate(-50%,18px); transition:opacity .28s, transform .35s var(--ease); }
+    .toast.show { opacity:1; transform:translate(-50%,0); }
+    .toast-icon { display:none; color:#b8e6a5; font-size:15px; }
+    .toast.success .toast-icon { display:inline; }
+    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(17px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes glow { from { transform:translateX(-50%) scale(1); opacity:.75; } to { transform:translateX(-50%) scale(1.15); opacity:1; } }
+    @keyframes pulse { 0%,100% { box-shadow:0 0 0 4px #8bbf9118; } 50% { box-shadow:0 0 0 7px #8bbf9108; } }
+    @keyframes float { 0%,100% { transform:translateY(0) rotate(-.5deg); } 50% { transform:translateY(-10px) rotate(.6deg); } }
+    @keyframes iconFloat { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-5px); } }
+    @keyframes shine { 0%,22% { left:-40%; } 55%,100% { left:130%; } }
+    @keyframes storeShimmer { 0%,35% { left:-45%; } 75%,100% { left:140%; } }
+    @keyframes tagPulse { 0%,100% { box-shadow:0 0 0 0 #d5b36a00; } 50% { box-shadow:0 0 0 4px #d5b36a1c; } }
+    @keyframes heartbeat { 0%,45%,100% { transform:scale(1); } 10%,25% { transform:scale(1.15); } }
+    @media (min-width:481px) { body { background:#07100c; padding:0 0 30px; } .site-shell { box-shadow:0 0 90px #0005; } .topbar { top:0; } }
+    @media (max-width:360px) { .hero { padding-left:19px; padding-right:19px; } .section-pad { padding-left:20px; padding-right:20px; } .hero h1 { font-size:47px; } .store-badge { padding:14px 12px; gap:10px; } .soon-tag { padding:7px; font-size:7px; } }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; scroll-behavior:auto !important; transition-duration:.01ms !important; } .reveal { opacity:1; transform:none; } }
+  </style>
 </head>
 <body>
+  <div class="site-shell">
+    <!-- 1. Topbar fixa -->
+    <header class="topbar" id="topbar">
+      <a class="brand" href="#inicio" aria-label="FIDECRUX — início">
+        <span class="brand-mark" aria-hidden="true">✝</span>
+        <span><span class="brand-name">FIDECRUX</span><span class="brand-sub" style="display:block">SUA JORNADA DE FÉ</span></span>
+      </a>
+      <button class="share-btn" id="shareBtn" aria-label="Compartilhar site" title="Compartilhar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.7 10.6 6.6-4.2M8.7 13.4l6.6 4.2"/></svg>
+      </button>
+    </header>
 
-<div class="site">
-
-  <!-- TOP BAR -->
-  <header class="topbar" id="topbar">
-    <div class="brand">
-      <div class="brand-logo">✝</div>
-      <div class="brand-text">
-        <div class="brand-name">FIDECRUX</div>
-        <div class="brand-sub">Sua jornada de fé</div>
-      </div>
-    </div>
-    <button class="menu-btn" id="shareBtn" aria-label="Compartilhar">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
-        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
-        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
-      </svg>
-    </button>
-  </header>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-inner">
-      <div class="hero-badge">
-        <span class="dot"></span>
-        Em breve nas lojas
-      </div>
-
-      <h1 class="hero-title">
-        Sua fé,<br>
-        <em>mais perto</em><br>
-        de Deus.
-      </h1>
-
-      <p class="hero-desc">
-        Palavra, oração, louvor e devoções em um só lugar. <strong>O FIDECRUX está chegando</strong> para transformar sua rotina com Deus.
-      </p>
-
-      <div class="hero-cta">
-        <button class="btn btn-whatsapp" id="heroWhatsBtn">
-          <svg class="icon-wa" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
-          </svg>
-          Quero ser avisado no WhatsApp
-          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="5" y1="12" x2="19" y2="12"/>
-            <polyline points="12 5 19 12 12 19"/>
-          </svg>
-        </button>
-
-        <button class="btn btn-ghost" id="previewBtn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/>
-            <polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/>
-          </svg>
-          Ver prévia do app
-        </button>
-      </div>
-
-      <div class="hero-note">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-        </svg>
-        Sem spam. Sem cobrança. Só fé.
-      </div>
-    </div>
-  </section>
-
-  <!-- FEATURES -->
-  <section class="section section-light" id="features">
-    <div class="reveal">
-      <div class="eyebrow">O que vem por aí</div>
-      <h2 class="section-title">
-        Tudo que sua fé<br>
-        <em>precisa, junto.</em>
-      </h2>
-      <p class="section-desc">
-        Um app feito com carinho, para acompanhar você em cada momento — do amanhecer à noite.
-      </p>
-    </div>
-
-    <div class="feature-list reveal">
-      <div class="feature">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round">
-            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-          </svg>
+    <main>
+      <!-- 2. Hero -->
+      <section class="hero" id="inicio">
+        <div class="hero-cross" aria-hidden="true">✝</div>
+        <div class="hero-content">
+          <div class="launch-badge"><span class="pulse-dot"></span> EM BREVE NAS LOJAS</div>
+          <h1 class="serif">Sua fé,<br><em>mais perto</em><br>de Deus.</h1>
+          <p class="hero-copy">Palavra, oração, louvor e devoções em um só lugar. O FIDECRUX está chegando.</p>
+          <div class="hero-actions">
+            <button class="btn btn-wa js-whatsapp" type="button">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.52 3.48A11.82 11.82 0 0 0 12.1 0C5.55 0 .22 5.33.22 11.88c0 2.09.55 4.13 1.59 5.93L.12 24l6.35-1.66a11.9 11.9 0 0 0 5.63 1.43h.01c6.55 0 11.88-5.33 11.89-11.88a11.8 11.8 0 0 0-3.48-8.41ZM12.1 21.75a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.77.99 1.01-3.67-.24-.38a9.85 9.85 0 0 1-1.51-5.22c0-5.47 4.45-9.92 9.92-9.92a9.86 9.86 0 0 1 7.02 2.91 9.86 9.86 0 0 1 2.9 7.02c0 5.47-4.45 9.92-9.93 9.92Zm5.45-7.43c-.3-.15-1.77-.87-2.04-.97-.28-.1-.48-.15-.68.15-.2.3-.78.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.47-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.14-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.68-1.63-.93-2.23-.24-.58-.49-.5-.68-.51h-.58c-.2 0-.52.08-.8.37-.28.3-1.05 1.03-1.05 2.5 0 1.48 1.08 2.9 1.23 3.1.15.2 2.12 3.24 5.14 4.54.72.31 1.28.5 1.72.64.72.23 1.37.2 1.89.12.58-.09 1.77-.73 2.02-1.43.25-.7.25-1.3.17-1.43-.07-.13-.27-.2-.57-.35Z"/></svg>
+              <span>Quero ser avisado no WhatsApp</span><span class="arrow" aria-hidden="true">↗</span>
+            </button>
+            <a class="btn btn-secondary" href="#previa">Ver prévia do app <span aria-hidden="true">↓</span></a>
+          </div>
+          <p class="hero-note">Sem spam<span>·</span>Sem cobrança<span>·</span>Só fé</p>
+          <div class="hero-bottom">Uma nova forma de viver a fé</div>
         </div>
-        <div class="feature-body">
-          <div class="feature-title">Liturgia diária</div>
-          <div class="feature-desc">Leituras, salmo e Evangelho com cores litúrgicas automáticas</div>
-        </div>
-      </div>
+      </section>
 
-      <div class="feature">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-          </svg>
+      <!-- 3. Features -->
+      <section class="section-light section-pad features" id="recursos">
+        <div class="features-head reveal">
+          <div class="eyebrow">O QUE VEM POR AÍ</div>
+          <h2 class="section-title">Tudo que sua fé precisa, junto.</h2>
+          <p class="section-copy">Um espaço pensado para acompanhar sua caminhada espiritual, todos os dias.</p>
         </div>
-        <div class="feature-body">
-          <div class="feature-title">Orações e novenas</div>
-          <div class="feature-desc">Terço guiado, novenas com progresso e exame de consciência</div>
+        <div class="feature-list">
+          <article class="feature reveal"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/><path d="M8 6h8M8 10h6"/></svg></div><div><h3>Liturgia diária</h3><p>A Palavra do dia para iluminar seus passos e fortalecer sua fé.</p></div></article>
+          <article class="feature reveal"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/></svg></div><div><h3>Orações e novenas</h3><p>Encontre palavras de fé para os diferentes momentos da vida.</p></div></article>
+          <article class="feature reveal"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div><div><h3>Louvor sem anúncios</h3><p>Um espaço de recolhimento para ouvir louvores com tranquilidade.</p></div></article>
+          <article class="feature reveal"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M12 2v8m0 4v8M4.9 4.9l5.7 5.7m2.8 2.8 5.7 5.7M2 12h8m4 0h8M4.9 19.1l5.7-5.7m2.8-2.8 5.7-5.7"/></svg></div><div><h3>Devoções completas</h3><p>Tradições e práticas devocionais para aprofundar sua caminhada.</p></div></article>
+          <article class="feature reveal"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5M12 15V3"/></svg></div><div><h3>100% offline*</h3><p>Tenha acesso aos conteúdos compatíveis mesmo sem conexão.</p></div></article>
+          <article class="feature reveal"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></div><div><h3>Compartilhe fé</h3><p>Envie mensagens de esperança e inspiração para quem você ama.</p></div></article>
         </div>
-      </div>
+        <p style="font-size:9px;color:#8b9388;margin:15px 0 0">*A disponibilidade offline depende dos recursos oferecidos na versão final.</p>
+      </section>
 
-      <div class="feature">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-            <path d="M9 18V5l12-2v13"/>
-            <circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
-          </svg>
+      <!-- 4. Preview do app -->
+      <section class="preview" id="previa">
+        <div class="reveal">
+          <div class="eyebrow">PRÉVIA EXCLUSIVA</div>
+          <h2 class="section-title">Um pouco do que está por vir.</h2>
+          <p class="section-copy">Uma experiência serena, criada para colocar a fé no centro do seu dia.</p>
         </div>
-        <div class="feature-body">
-          <div class="feature-title">Louvor sem anúncios</div>
-          <div class="feature-desc">Ouça offline, em segundo plano, sem nenhuma interrupção</div>
-        </div>
-      </div>
-
-      <div class="feature">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="9"/>
-            <circle cx="12" cy="3" r="1.2" fill="currentColor"/>
-            <circle cx="12" cy="21" r="1.2" fill="currentColor"/>
-            <circle cx="3" cy="12" r="1.2" fill="currentColor"/>
-            <circle cx="21" cy="12" r="1.2" fill="currentColor"/>
-            <circle cx="6" cy="6" r="1.2" fill="currentColor"/>
-            <circle cx="18" cy="6" r="1.2" fill="currentColor"/>
-            <circle cx="6" cy="18" r="1.2" fill="currentColor"/>
-            <circle cx="18" cy="18" r="1.2" fill="currentColor"/>
-          </svg>
-        </div>
-        <div class="feature-body">
-          <div class="feature-title">Devoções completas</div>
-          <div class="feature-desc">Via-Sacra com 14 estações e os santos de cada dia</div>
-        </div>
-      </div>
-
-      <div class="feature">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-            <polyline points="7 10 12 15 17 10"/>
-            <line x1="12" y1="15" x2="12" y2="3"/>
-          </svg>
-        </div>
-        <div class="feature-body">
-          <div class="feature-title">100% offline</div>
-          <div class="feature-desc">Reze em qualquer lugar — no ônibus, no avião, na missa</div>
-        </div>
-      </div>
-
-      <div class="feature">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round">
-            <rect x="3" y="3" width="18" height="18" rx="2"/>
-            <circle cx="8.5" cy="8.5" r="1.5"/>
-            <path d="M21 15l-5-5L5 21"/>
-          </svg>
-        </div>
-        <div class="feature-body">
-          <div class="feature-title">Compartilhe fé</div>
-          <div class="feature-desc">Gere imagens de versículos para enviar a quem você ama</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PREVIEW -->
-  <section class="section section-dark" id="preview">
-    <div class="reveal" style="text-align:center">
-      <div class="eyebrow" style="justify-content:center">Prévia exclusiva</div>
-      <h2 class="section-title">
-        Um pouco do que<br>
-        <em>está por vir.</em>
-      </h2>
-      <p class="section-desc" style="margin-left:auto;margin-right:auto">
-        Design acolhedor, pensado para a sua oração.
-      </p>
-    </div>
-
-    <div class="preview-wrap reveal">
-      <div class="phone">
-        <div class="phone-frame">
-          <div class="phone-screen">
-            <div class="m-status"><span>9:41</span><span>●●●</span></div>
-            <div class="m-header">
-              <div class="m-logo">✝</div>
-              <div class="m-title">FIDECRUX</div>
-              <div class="m-icons">☾ ⌕</div>
-            </div>
-            <div class="m-content">
-              <div class="m-greet">Bom dia</div>
-              <div class="m-date">Hoje é um dia de graça</div>
-              <div class="m-verse">
-                <div class="m-verse-label">VERSÍCULO DO DIA</div>
-                <div class="m-verse-text">"O Senhor é meu pastor; nada me faltará."</div>
-                <div class="m-verse-ref">Salmo 23, 1</div>
+        <div class="phone-stage reveal">
+          <div class="phone" role="img" aria-label="Prévia ilustrativa da tela inicial do aplicativo FIDECRUX">
+            <div class="phone-screen">
+              <div class="statusbar"><span>9:41</span><div class="status-icons"><span>▮▮▮</span><span>⌁</span><span class="battery"></span></div></div>
+              <div class="app-head"><span class="app-mark">✝</span><span><span class="app-word">FIDECRUX</span><span class="app-sub" style="display:block">SUA JORNADA DE FÉ</span></span></div>
+              <h3 class="greeting">Bom dia.</h3>
+              <div class="greeting-sub">Que a paz de Cristo esteja com você.</div>
+              <div class="verse-card"><div class="verse-label">PALAVRA DO DIA</div><div class="verse-text">“O Senhor é meu pastor; nada me faltará.”</div><div class="verse-ref">Salmo 23, 1</div></div>
+              <div class="quick-title">Como deseja se conectar?</div>
+              <div class="quick-grid">
+                <div class="quick"><div class="quick-icon">♧</div>Liturgia</div>
+                <div class="quick"><div class="quick-icon">♡</div>Orações</div>
+                <div class="quick"><div class="quick-icon">♫</div>Louvor</div>
+                <div class="quick"><div class="quick-icon">✝</div>Devoções</div>
               </div>
-              <div class="m-section-label">Ações rápidas</div>
-              <div class="m-quick">
-                <div class="m-quick-item">
-                  <div class="m-quick-icon">▤</div>
-                  Liturgia
-                </div>
-                <div class="m-quick-item">
-                  <div class="m-quick-icon">♫</div>
-                  Músicas
-                </div>
-                <div class="m-quick-item">
-                  <div class="m-quick-icon">♡</div>
-                  Orações
-                </div>
-                <div class="m-quick-item">
-                  <div class="m-quick-icon">✧</div>
-                  Terço
-                </div>
-              </div>
-            </div>
-            <div class="m-nav">
-              <div class="m-nav-item active">✝</div>
-              <div class="m-nav-item">▤</div>
-              <div class="m-nav-item">♫</div>
-              <div class="m-nav-item">♡</div>
-              <div class="m-nav-item">☰</div>
+              <div class="daily-card"><div class="daily-symbol">✧</div><div><strong>Um momento com Deus</strong><small>Reserve um instante para a oração.</small></div></div>
+              <div class="bottom-nav"><div class="active"><span>⌂</span>Início</div><div><span>▤</span>Liturgia</div><div><span>♡</span>Orações</div><div><span>♫</span>Louvor</div><div><span>☷</span>Mais</div></div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
+        <p class="preview-caption">Prévia conceitual · A interface final poderá mudar.</p>
+      </section>
 
-  <!-- STORES -->
-  <section class="stores-section">
-    <div class="stores-label reveal">Chegando em</div>
-    <div class="stores-row reveal">
-      <div class="store-badge">
-        <div class="s-tag">EM BREVE</div>
-        <div class="s-icon">
-          <svg viewBox="0 0 24 24" fill="#fff">
-            <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
-          </svg>
+      <!-- 5. Lojas -->
+      <section class="stores">
+        <div class="store-label reveal">CHEGANDO EM</div>
+        <div class="store-list">
+          <div class="store-badge reveal">
+            <div class="store-logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.37 12.54c.02 2.18 1.91 2.9 1.93 2.91-.02.05-.3 1.03-.99 2.04-.6.88-1.23 1.76-2.22 1.78-.97.02-1.28-.57-2.39-.57-1.1 0-1.45.55-2.37.59-.95.04-1.67-.95-2.28-1.82-1.24-1.8-2.19-5.08-.91-7.3a3.53 3.53 0 0 1 2.97-1.8c.93-.02 1.81.63 2.39.63.57 0 1.64-.78 2.77-.66.47.02 1.8.19 2.65 1.45-.07.04-1.58.92-1.56 2.75ZM14.55 6.56c.5-.61.84-1.46.75-2.31-.73.03-1.61.49-2.13 1.1-.47.54-.88 1.4-.77 2.23.81.06 1.64-.41 2.15-1.02Z"/></svg></div>
+            <div class="store-copy"><small>Baixe na</small><strong>App Store</strong></div><span class="soon-tag">EM BREVE</span>
+          </div>
+          <div class="store-badge reveal">
+            <div class="store-logo" aria-hidden="true"><svg viewBox="0 0 36 36"><path d="M5 3.8c-.6.4-1 1.1-1 2.1v24.2c0 1 .4 1.7 1 2.1L19 18 5 3.8Z" fill="#34A853"/><path d="m5 3.8 17.2 9.8L19 18 5 3.8Z" fill="#4285F4"/><path d="M22.2 13.6 30 18c1.8 1 1.8 2.9 0 3.9l-7.8 4.5L19 18l3.2-4.4Z" fill="#FBBC04"/><path d="M5 32.2 22.2 22.4 19 18 5 32.2Z" fill="#EA4335"/></svg></div>
+            <div class="store-copy"><small>Disponível no</small><strong>Google Play</strong></div><span class="soon-tag">EM BREVE</span>
+          </div>
         </div>
-        <div class="s-text">
-          <div class="s-small">Baixe na</div>
-          <div class="s-name">App Store</div>
-        </div>
-      </div>
-      <div class="store-badge">
-        <div class="s-tag">EM BREVE</div>
-        <div class="s-icon">
-          <svg viewBox="0 0 24 24">
-            <defs>
-              <linearGradient id="gp1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00d4ff"/><stop offset="100%" stop-color="#00b4e8"/></linearGradient>
-              <linearGradient id="gp2" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#ff3a44"/><stop offset="100%" stop-color="#ff7a5c"/></linearGradient>
-              <linearGradient id="gp3" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#ffd400"/><stop offset="100%" stop-color="#f9a825"/></linearGradient>
-              <linearGradient id="gp4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#48ff91"/><stop offset="100%" stop-color="#00c853"/></linearGradient>
-            </defs>
-            <path fill="url(#gp1)" d="M3 2L13.5 12.5L3 2z"/>
-            <path fill="url(#gp2)" d="M3 2L13.5 12.5L3 22L3 2z"/>
-            <path fill="url(#gp4)" d="M13.5 12.5L21 12.5L3 2v20L13.5 12.5z"/>
-            <path fill="url(#gp3)" d="M13.5 12.5L21 2L3 2L13.5 12.5z"/>
-          </svg>
-        </div>
-        <div class="s-text">
-          <div class="s-small">Disponível no</div>
-          <div class="s-name">Google Play</div>
-        </div>
-      </div>
-    </div>
-  </section>
+        <p class="stores-note reveal">Estamos preparando tudo com carinho para você. Em breve, nas lojas oficiais.</p>
+      </section>
 
-  <!-- CTA WHATSAPP -->
-  <section class="cta-whatsapp" id="waitlist">
-    <div class="cta-icon">
-      <svg viewBox="0 0 24 24" fill="currentColor">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
-      </svg>
-    </div>
-    <h2 class="cta-title reveal">
-      Seja o primeiro<br>
-      <em>a saber do lançamento.</em>
-    </h2>
-    <p class="cta-desc reveal">
-      Clique abaixo e mande uma mensagem direta no WhatsApp. Avisaremos você em primeira mão quando o FIDECRUX chegar.
-    </p>
-    <button class="btn btn-whatsapp reveal" id="ctaWhatsBtn" style="width:100%;max-width:340px;margin:0 auto;display:flex">
-      <svg class="icon-wa" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
-      </svg>
-      Avisar no WhatsApp
-      <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="5" y1="12" x2="19" y2="12"/>
-        <polyline points="12 5 19 12 12 19"/>
-      </svg>
-    </button>
-  </section>
-
-  <!-- FAQ -->
-  <section class="section section-light">
-    <div class="reveal">
-      <div class="eyebrow">Dúvidas</div>
-      <h2 class="section-title">
-        Perguntas<br>
-        <em>frequentes.</em>
-      </h2>
-    </div>
-
-    <div class="faq-list" style="margin-top:32px">
-      <div class="faq-item reveal">
-        <button class="faq-q">
-          Quando o FIDECRUX será lançado?
-          <span class="faq-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="6 9 12 15 18 9"/>
-            </svg>
-          </span>
+      <!-- 6. CTA WhatsApp -->
+      <section class="cta">
+        <div class="cta-icon reveal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.52 3.48A11.82 11.82 0 0 0 12.1 0C5.55 0 .22 5.33.22 11.88c0 2.09.55 4.13 1.59 5.93L.12 24l6.35-1.66a11.9 11.9 0 0 0 5.63 1.43h.01c6.55 0 11.88-5.33 11.89-11.88a11.8 11.8 0 0 0-3.48-8.41ZM12.1 21.75a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.77.99 1.01-3.67-.24-.38a9.85 9.85 0 0 1-1.51-5.22c0-5.47 4.45-9.92 9.92-9.92a9.86 9.86 0 0 1 7.02 2.91 9.86 9.86 0 0 1 2.9 7.02c0 5.47-4.45 9.92-9.93 9.92Z"/></svg></div>
+        <h2 class="section-title reveal">Seja o primeiro a saber do lançamento.</h2>
+        <p class="section-copy reveal">Receba um aviso direto pelo WhatsApp quando o FIDECRUX estiver disponível. Sem cadastro complicado — é só nos chamar.</p>
+        <button class="btn btn-wa js-whatsapp reveal" type="button">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.52 3.48A11.82 11.82 0 0 0 12.1 0C5.55 0 .22 5.33.22 11.88c0 2.09.55 4.13 1.59 5.93L.12 24l6.35-1.66a11.9 11.9 0 0 0 5.63 1.43h.01c6.55 0 11.88-5.33 11.89-11.88a11.8 11.8 0 0 0-3.48-8.41ZM12.1 21.75a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.77.99 1.01-3.67-.24-.38a9.85 9.85 0 0 1-1.51-5.22c0-5.47 4.45-9.92 9.92-9.92a9.86 9.86 0 0 1 7.02 2.91 9.86 9.86 0 0 1 2.9 7.02c0 5.47-4.45 9.92-9.93 9.92Z"/></svg>
+          Avisar no WhatsApp <span class="arrow" aria-hidden="true">↗</span>
         </button>
-        <div class="faq-a">
-          Estamos em fase final de desenvolvimento. O lançamento está previsto em breve — em 2026. Entre na lista do WhatsApp para ser avisado com antecedência.
+        <p class="phone-number">WhatsApp <strong>+55 31 98771-1435</strong></p>
+        <p class="privacy-note">Ao iniciar a conversa, você escolhe se deseja enviar a mensagem.</p>
+      </section>
+
+      <!-- 7. FAQ -->
+      <section class="section-light section-pad faq" id="duvidas">
+        <div class="reveal">
+          <div class="eyebrow">DÚVIDAS</div>
+          <h2 class="section-title">Perguntas frequentes.</h2>
         </div>
-      </div>
-
-      <div class="faq-item reveal">
-        <button class="faq-q">
-          O app será gratuito?
-          <span class="faq-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="6 9 12 15 18 9"/>
-            </svg>
-          </span>
-        </button>
-        <div class="faq-a">
-          Sim! O FIDECRUX será 100% gratuito, sem anúncios, sem assinatura e sem cobranças escondidas. Todos os recursos principais estarão disponíveis para todos.
+        <div class="faq-list">
+          <div class="faq-item reveal">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-a1" id="faq-q1"><span>Quando o FIDECRUX será lançado?</span><span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m6 9 6 6 6-6"/></svg></span></button>
+            <div class="faq-answer" id="faq-a1" role="region" aria-labelledby="faq-q1"><p>A data oficial ainda está sendo definida. Chame a gente pelo WhatsApp para receber um aviso quando houver novidades sobre o lançamento.</p></div>
+          </div>
+          <div class="faq-item reveal">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-a2" id="faq-q2"><span>O app será gratuito?</span><span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m6 9 6 6 6-6"/></svg></span></button>
+            <div class="faq-answer" id="faq-a2" role="region" aria-labelledby="faq-q2"><p>Os detalhes sobre gratuidade e possíveis recursos pagos serão divulgados com as informações oficiais do lançamento.</p></div>
+          </div>
+          <div class="faq-item reveal">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-a3" id="faq-q3"><span>Vai funcionar sem internet?</span><span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m6 9 6 6 6-6"/></svg></span></button>
+            <div class="faq-answer" id="faq-a3" role="region" aria-labelledby="faq-q3"><p>A proposta prevê acesso offline a conteúdos compatíveis. Os recursos que funcionarão sem conexão serão confirmados na versão final.</p></div>
+          </div>
+          <div class="faq-item reveal">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-a4" id="faq-q4"><span>É oficial da Igreja Católica?</span><span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m6 9 6 6 6-6"/></svg></span></button>
+            <div class="faq-answer" id="faq-a4" role="region" aria-labelledby="faq-q4"><p>O FIDECRUX é uma iniciativa voltada à fé católica. Não afirmamos vínculo ou aprovação institucional da Igreja Católica. Eventuais parcerias serão informadas com transparência.</p></div>
+          </div>
+          <div class="faq-item reveal">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-a5" id="faq-q5"><span>Meus dados estão seguros?</span><span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m6 9 6 6 6-6"/></svg></span></button>
+            <div class="faq-answer" id="faq-a5" role="region" aria-labelledby="faq-q5"><p>Esta página não possui formulário de cadastro. Ao clicar no WhatsApp, você será direcionado ao serviço do WhatsApp e poderá revisar a mensagem antes de enviá-la. A política de privacidade completa será publicada junto aos serviços do app.</p></div>
+          </div>
         </div>
+      </section>
+    </main>
+
+    <!-- 8. Footer -->
+    <footer class="footer">
+      <a class="brand" href="#inicio" aria-label="FIDECRUX — voltar ao início">
+        <span class="brand-mark" aria-hidden="true">✝</span>
+        <span><span class="brand-name">FIDECRUX</span><span class="brand-sub" style="display:block">SUA JORNADA DE FÉ</span></span>
+      </a>
+      <p class="footer-tagline">A fé que ilumina o caminho.</p>
+      <div class="socials" aria-label="Redes sociais">
+        <a class="social-btn" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></a>
+        <a class="social-btn" href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.6 7.1a6.7 6.7 0 0 1-4.1-1.4v8.1a6.4 6.4 0 1 1-5.5-6.3v3.6a2.9 2.9 0 1 0 1.9 2.7V2h3.6c.3 2.1 1.9 3.7 4.1 4v1.1Z"/></svg></a>
+        <button class="social-btn js-whatsapp" type="button" aria-label="Falar pelo WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.52 3.48A11.82 11.82 0 0 0 12.1 0C5.55 0 .22 5.33.22 11.88c0 2.09.55 4.13 1.59 5.93L.12 24l6.35-1.66a11.9 11.9 0 0 0 5.63 1.43h.01c6.55 0 11.88-5.33 11.89-11.88a11.8 11.8 0 0 0-3.48-8.41Z"/></svg></button>
       </div>
+      <nav class="footer-links" aria-label="Links do rodapé">
+        <button class="js-whatsapp" type="button">Avisar no WhatsApp</button>
+        <a href="#privacidade" id="privacyLink">Privacidade</a>
+        <a href="#termos" id="termsLink">Termos</a>
+      </nav>
+      <div class="footer-rule"></div>
+      <p class="copyright">© <span id="year"></span> FIDECRUX · Feito com <span class="heart">♥</span> e fé</p>
+    </footer>
+  </div>
 
-      <div class="faq-item reveal">
-        <button class="faq-q">
-          Vai funcionar sem internet?
-          <span class="faq-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="6 9 12 15 18 9"/>
-            </svg>
-          </span>
-        </button>
-        <div class="faq-a">
-          Sim! O FIDECRUX foi feito para funcionar offline. Você poderá rezar, ouvir louvores e acessar suas orações em qualquer lugar — no ônibus, no avião, na missa.
-        </div>
-      </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"><span class="toast-icon" aria-hidden="true">✓</span><span id="toastText">Abrindo WhatsApp…</span></div>
 
-      <div class="faq-item reveal">
-        <button class="faq-q">
-          É oficial da Igreja Católica?
-          <span class="faq-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="6 9 12 15 18 9"/>
-            </svg>
-          </span>
-        </button>
-        <div class="faq-a">
-          O FIDECRUX é um projeto independente, feito com respeito e carinho pela tradição católica. Seguimos os ensinamentos da Igreja. Para celebrações oficiais, consulte sempre a fonte da sua paróquia.
-        </div>
-      </div>
+  <script>
+    (() => {
+      'use strict';
 
-      <div class="faq-item reveal">
-        <button class="faq-q">
-          Meus dados estão seguros?
-          <span class="faq-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="6 9 12 15 18 9"/>
-            </svg>
-          </span>
-        </button>
-        <div class="faq-a">
-          Sim. Seus favoritos, diário e reflexões ficam salvos apenas no seu dispositivo. Seu WhatsApp será usado apenas para te avisar sobre o lançamento — nunca será compartilhado.
-        </div>
-      </div>
-    </div>
-  </section>
+      // 1. Integração WhatsApp — todos os botões usam a mesma função.
+      const WHATSAPP_NUMBER = '553198771435';
+      const WHATSAPP_MESSAGE = 'Olá! Vim pelo site do FIDECRUX e quero ser avisado(a) quando o app lançar. 🙏';
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <div class="footer-logo">✝</div>
-        <div class="footer-name">FIDECRUX</div>
-        <div class="footer-tag">Sua jornada de fé</div>
-      </div>
+      const toast = document.getElementById('toast');
+      const toastText = document.getElementById('toastText');
+      let toastTimer;
 
-      <div class="footer-social">
-        <a href="#" class="social-btn" aria-label="Instagram" id="instagramBtn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="2" width="20" height="20" rx="5"/>
-            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-          </svg>
-        </a>
-        <a href="#" class="social-btn" aria-label="TikTok" id="tiktokBtn">
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
-          </svg>
-        </a>
-        <a href="#" class="social-btn" aria-label="WhatsApp" id="whatsappFooterBtn">
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
-          </svg>
-        </a>
-      </div>
-
-      <div class="footer-links">
-        <a href="#waitlist">Avisar no WhatsApp</a>
-        <a href="#" id="privacyLink">Privacidade</a>
-        <a href="#" id="termsLink">Termos</a>
-      </div>
-
-      <div class="footer-copy">
-        © 2026 FIDECRUX · Feito com <span class="heart">♥</span> e fé<br>
-        <span style="opacity:.6">App em desenvolvimento · Em breve nas lojas</span>
-      </div>
-    </div>
-  </footer>
-
-</div>
-
-<div class="toast" id="toast"></div>
-
-<script>
-(() => {
-'use strict';
-const $ = s => document.querySelector(s);
-const $$ = s => [...document.querySelectorAll(s)];
-
-/* ============ WHATSAPP ============ */
-const WHATSAPP_NUMBER = '553198771435';
-const WHATSAPP_MESSAGE = 'Olá! Vim pelo site do FIDECRUX e quero ser avisado(a) quando o app lançar. 🙏';
-
-function openWhatsApp() {
-  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
-  window.open(url, '_blank', 'noopener,noreferrer');
-  showToast('Abrindo WhatsApp…', 'success');
-}
-
-/* ============ TOAST ============ */
-let toastTimer;
-function showToast(msg, type = '') {
-  const el = $('#toast');
-  el.innerHTML = (type === 'success' 
-    ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>' 
-    : '') + `<span>${msg}</span>`;
-  el.className = 'toast show ' + type;
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => el.classList.remove('show'), 3200);
-}
-
-/* ============ TOPBAR SCROLL ============ */
-const topbar = $('#topbar');
-let lastScroll = 0;
-window.addEventListener('scroll', () => {
-  const y = window.scrollY;
-  if (y > 40) topbar.classList.add('scrolled');
-  else topbar.classList.remove('scrolled');
-  lastScroll = y;
-}, { passive: true });
-
-/* ============ REVEAL ON SCROLL ============ */
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('in-view');
-      revealObserver.unobserve(entry.target);
-    }
-  });
-}, {
-  threshold: 0.08,
-  rootMargin: '0px 0px -60px 0px'
-});
-$$('.reveal').forEach(el => revealObserver.observe(el));
-
-/* ============ FAQ ============ */
-$$('.faq-item').forEach(item => {
-  const q = item.querySelector('.faq-q');
-  q.addEventListener('click', () => {
-    const wasOpen = item.classList.contains('open');
-    $$('.faq-item').forEach(i => i.classList.remove('open'));
-    if (!wasOpen) item.classList.add('open');
-  });
-});
-
-/* ============ WHATSAPP BUTTONS ============ */
-$('#heroWhatsBtn').addEventListener('click', openWhatsApp);
-$('#ctaWhatsBtn').addEventListener('click', openWhatsApp);
-$('#whatsappFooterBtn').addEventListener('click', (e) => {
-  e.preventDefault();
-  openWhatsApp();
-});
-
-/* ============ PREVIEW BUTTON ============ */
-$('#previewBtn').addEventListener('click', () => {
-  $('#preview').scrollIntoView({ behavior: 'smooth', block: 'start' });
-});
-
-/* ============ SHARE ============ */
-async function shareApp() {
-  const text = 'FIDECRUX — Sua jornada de fé. Palavra, oração, louvor e devoções católicas. Em breve nas lojas!';
-  const url = location.href;
-  if (navigator.share) {
-    try {
-      await navigator.share({ title: 'FIDECRUX', text, url });
-      return;
-    } catch (e) {}
-  }
-  try {
-    await navigator.clipboard.writeText(`${text}\n${url}`);
-    showToast('Link copiado!', 'success');
-  } catch {
-    showToast('Copie o link manualmente', 'error');
-  }
-}
-$('#shareBtn').addEventListener('click', shareApp);
-
-/* ============ SOCIAL ============ */
-$('#instagramBtn').addEventListener('click', (e) => {
-  e.preventDefault();
-  showToast('Instagram em breve · @fidecrux');
-});
-$('#tiktokBtn').addEventListener('click', (e) => {
-  e.preventDefault();
-  showToast('TikTok em breve · @fidecrux');
-});
-
-/* ============ FOOTER LINKS ============ */
-$('#privacyLink').addEventListener('click', (e) => {
-  e.preventDefault();
-  showToast('Política de privacidade em breve');
-});
-$('#termsLink').addEventListener('click', (e) => {
-  e.preventDefault();
-  showToast('Termos de uso em breve');
-});
-
-/* ============ PREVENT DOUBLE TAP ZOOM ============ */
-let lastTouchEnd = 0;
-document.addEventListener('touchend', (e) => {
-  const now = Date.now();
-  if (now - lastTouchEnd <= 300) e.preventDefault();
-  lastTouchEnd = now;
-}, { passive: false });
-
-/* ============ DYNAMIC YEAR ============ */
-const footerCopy = document.querySelector('.footer-copy');
-if (footerCopy) {
-  footerCopy.innerHTML = footerCopy.innerHTML.replace('2026', new Date().getFullYear());
-}
-
-/* ============ PARALLAX ON HERO (subtle) ============ */
-let ticking = false;
-window.addEventListener('scroll', () => {
-  if (!ticking) {
-    window.requestAnimationFrame(() => {
-      const y = window.scrollY;
-      const heroEl = document.querySelector('.hero::before');
-      const crossEl = document.querySelector('.hero::after');
-      // We can't directly manipulate pseudo-elements, but we can adjust the hero
-      const hero = document.querySelector('.hero');
-      if (hero && y < 600) {
-        hero.style.transform = `translateY(${y * 0.15}px)`;
-        hero.style.opacity = 1 - (y / 900);
+      // 2. Toast com suporte a mensagem padrão e sucesso.
+      function showToast(msg, type = '') {
+        window.clearTimeout(toastTimer);
+        toastText.textContent = msg;
+        toast.classList.toggle('success', type === 'success');
+        toast.classList.add('show');
+        toastTimer = window.setTimeout(() => toast.classList.remove('show'), 3200);
       }
-      ticking = false;
-    });
-    ticking = true;
-  }
-}, { passive: true });
 
-})();
-</script>
+      function openWhatsApp() {
+        showToast('Abrindo WhatsApp…');
+        const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
+        window.open(url, '_blank', 'noopener,noreferrer');
+      }
+      document.querySelectorAll('.js-whatsapp').forEach(button => {
+        button.addEventListener('click', openWhatsApp);
+      });
+
+      // 3. Topbar transparente no topo e com blur ao rolar.
+      const topbar = document.getElementById('topbar');
+      const updateTopbar = () => topbar.classList.toggle('scrolled', window.scrollY > 40);
+      updateTopbar();
+      window.addEventListener('scroll', updateTopbar, { passive: true });
+
+      // 4. Reveal on scroll com IntersectionObserver e fallback acessível.
+      const revealItems = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window) {
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.08 });
+        revealItems.forEach(el => revealObserver.observe(el));
+      } else {
+        revealItems.forEach(el => el.classList.add('is-visible'));
+      }
+
+      // 5. FAQ accordion — somente uma resposta aberta por vez.
+      const faqButtons = document.querySelectorAll('.faq-question');
+      faqButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const wasOpen = button.getAttribute('aria-expanded') === 'true';
+          faqButtons.forEach(other => {
+            other.setAttribute('aria-expanded', 'false');
+            const answer = document.getElementById(other.getAttribute('aria-controls'));
+            answer.style.maxHeight = '0px';
+          });
+          if (!wasOpen) {
+            button.setAttribute('aria-expanded', 'true');
+            const answer = document.getElementById(button.getAttribute('aria-controls'));
+            answer.style.maxHeight = answer.scrollHeight + 'px';
+          }
+        });
+      });
+      window.addEventListener('resize', () => {
+        document.querySelectorAll('.faq-question[aria-expanded="true"]').forEach(button => {
+          const answer = document.getElementById(button.getAttribute('aria-controls'));
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+        });
+      }, { passive: true });
+
+      // 6. Compartilhar com fallback para clipboard.
+      document.getElementById('shareBtn').addEventListener('click', async () => {
+        const shareData = {
+          title: 'FIDECRUX — Sua jornada de fé',
+          text: 'Palavra, oração, louvor e devoções em um só lugar. Conheça o FIDECRUX.',
+          url: window.location.href
+        };
+        try {
+          if (navigator.share) {
+            await navigator.share(shareData);
+            showToast('Compartilhamento aberto.', 'success');
+          } else if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(window.location.href);
+            showToast('Link copiado para compartilhar.', 'success');
+          } else {
+            const temp = document.createElement('textarea');
+            temp.value = window.location.href;
+            temp.setAttribute('readonly', '');
+            temp.style.position = 'fixed';
+            temp.style.opacity = '0';
+            document.body.appendChild(temp);
+            temp.select();
+            const copied = document.execCommand('copy');
+            temp.remove();
+            showToast(copied ? 'Link copiado para compartilhar.' : 'Não foi possível copiar o link.', copied ? 'success' : '');
+          }
+        } catch (error) {
+          if (error && error.name !== 'AbortError') showToast('Não foi possível compartilhar agora.');
+        }
+      });
+
+      // 7. Evita zoom por double-tap em iOS sem bloquear gestos de acessibilidade.
+      let lastTouchEnd = 0;
+      document.addEventListener('touchend', event => {
+        const now = Date.now();
+        if (now - lastTouchEnd <= 300) event.preventDefault();
+        lastTouchEnd = now;
+      }, { passive: false });
+
+      // 8. Ano dinâmico.
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Os links legais apontam para avisos locais honestos enquanto as páginas
+      // definitivas não existem; substitua os textos pelos documentos oficiais antes de publicar.
+      document.getElementById('privacyLink').addEventListener('click', event => {
+        event.preventDefault();
+        showToast('A política de privacidade será publicada em breve.');
+      });
+      document.getElementById('termsLink').addEventListener('click', event => {
+        event.preventDefault();
+        showToast('Os termos de uso serão publicados em breve.');
+      });
+    })();
+  </script>
 </body>
 </html>
